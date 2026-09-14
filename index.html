@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dinámica de Sistemas · Simulador Interactivo</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script>
+  // Fallback por si el CDN principal no carga (p.ej. sin conexión a jsdelivr)
+  window.addEventListener('DOMContentLoaded', function(){
+    if (typeof Chart === 'undefined') {
+      var fallback = document.createElement('script');
+      fallback.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js';
+      fallback.onload = initApp;
+      fallback.onerror = function(){
+        document.body.innerHTML = '<div style="padding:40px;color:#e8636b;font-family:sans-serif">No se pudo cargar Chart.js desde la red. Verifica tu conexión a internet e intenta recargar la página.</div>';
+      };
+      document.head.appendChild(fallback);
+    } else {
+      initApp();
+    }
+  });
+</script>
+<style>
+  :root{
+    --bg: #0d1117;
+    --panel: #141b26;
+    --panel-2: #1b2432;
+    --line: #29384a;
+    --text: #dbe4ee;
+    --muted: #7c8ba1;
+    --rabbit: #45c4a0;
+    --fox: #e8905c;
+    --susc: #4fa3e3;
+    --inf: #e8636b;
+    --rec: #6fcf7a;
+    --accent: #f2c14e;
+  }
+  html,body{background:var(--bg); color:var(--text); font-family: 'Segoe UI', Inter, system-ui, sans-serif;}
+  .mono{font-family: 'Consolas','SFMono-Regular',Menlo,monospace;}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:10px;}
+  .card-2{background:var(--panel-2); border:1px solid var(--line); border-radius:8px;}
+  input[type=range]{-webkit-appearance:none; height:4px; border-radius:2px; background:var(--line); outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:14px; height:14px; border-radius:50%; background:var(--accent); cursor:pointer; border:2px solid #0d1117;}
+  input[type=number]{background:var(--panel-2); border:1px solid var(--line); color:var(--text); border-radius:6px; padding:2px 6px; width:80px;}
+  .tab-btn{transition:all .15s ease;}
+  .tab-btn.active{background:var(--accent); color:#20180a; font-weight:600;}
+  .tab-btn:not(.active){background:transparent; color:var(--muted);}
+  .ctrl-btn{transition:all .15s ease; border:1px solid var(--line);}
+  .ctrl-btn:hover{border-color:var(--accent);}
+  .badge{font-size:11px; letter-spacing:.02em; color:var(--muted);}
+  ::-webkit-scrollbar{width:8px; height:8px;}
+  ::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px;}
+  .loop-svg text{fill:var(--text); font-size:11px;}
+  .loop-svg path{stroke:var(--muted); fill:none;}
+</style>
+</head>
+<body class="min-h-screen">
+
+<div class="max-w-7xl mx-auto px-4 py-6">
+
+  <header class="mb-6">
+    <h1 class="text-xl md:text-2xl font-semibold tracking-tight">Simulador de Dinámica de Sistemas</h1>
+    <p class="badge mt-1">Basado en "Teoría y Ejercicios Prácticos de Dinámica de Sistemas" — Juan Martín García · Integración por Método de Euler</p>
+  </header>
+
+  <!-- TABS -->
+  <div class="flex gap-2 mb-6 border-b" style="border-color:var(--line)">
+    <button id="tabBtn1" class="tab-btn active px-4 py-2 rounded-t-lg text-sm" onclick="switchTab(1)">Ejercicio 1 · Presa-Depredador</button>
+    <button id="tabBtn2" class="tab-btn px-4 py-2 rounded-t-lg text-sm" onclick="switchTab(2)">Ejercicio 2 · Modelo SIR</button>
+  </div>
+
+  <!-- ===================== MODELO 1 ===================== -->
+  <div id="panel1">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+
+      <!-- Controles -->
+      <div class="card p-4 lg:col-span-1">
+        <h2 class="text-sm font-semibold mb-3 text-slate-300">Condiciones iniciales</h2>
+        <div class="space-y-3 mb-5">
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>Conejos (C₀)</span><input type="number" id="m1_C0" value="100" class="mono text-right" oninput="syncSlider('m1_C0','m1_C0_s')"></div>
+            <input type="range" id="m1_C0_s" min="0" max="500" value="100" class="w-full" oninput="syncNumber('m1_C0_s','m1_C0')">
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>Zorros (Z₀)</span><input type="number" id="m1_Z0" value="15" class="mono text-right" oninput="syncSlider('m1_Z0','m1_Z0_s')"></div>
+            <input type="range" id="m1_Z0_s" min="0" max="200" value="15" class="w-full" oninput="syncNumber('m1_Z0_s','m1_Z0')">
+          </div>
+        </div>
+
+        <h2 class="text-sm font-semibold mb-3 text-slate-300">Parámetros</h2>
+        <div class="space-y-3 mb-5">
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>a · natalidad conejos</span><input type="number" step="0.01" id="m1_a" value="0.5" class="mono text-right" oninput="syncSlider('m1_a','m1_a_s')"></div>
+            <input type="range" id="m1_a_s" min="0" max="2" step="0.01" value="0.5" class="w-full" oninput="syncNumber('m1_a_s','m1_a')">
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>b · depredación</span><input type="number" step="0.001" id="m1_b" value="0.02" class="mono text-right" oninput="syncSlider('m1_b','m1_b_s')"></div>
+            <input type="range" id="m1_b_s" min="0" max="0.2" step="0.001" value="0.02" class="w-full" oninput="syncNumber('m1_b_s','m1_b')">
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>c · eficiencia zorros</span><input type="number" step="0.001" id="m1_c" value="0.01" class="mono text-right" oninput="syncSlider('m1_c','m1_c_s')"></div>
+            <input type="range" id="m1_c_s" min="0" max="0.1" step="0.001" value="0.01" class="w-full" oninput="syncNumber('m1_c_s','m1_c')">
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>d · mortalidad zorros</span><input type="number" step="0.01" id="m1_d" value="0.4" class="mono text-right" oninput="syncSlider('m1_d','m1_d_s')"></div>
+            <input type="range" id="m1_d_s" min="0" max="2" step="0.01" value="0.4" class="w-full" oninput="syncNumber('m1_d_s','m1_d')">
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>dt (paso Euler)</span><input type="number" step="0.01" id="m1_dt" value="0.05" class="mono text-right" oninput="syncSlider('m1_dt','m1_dt_s')"></div>
+            <input type="range" id="m1_dt_s" min="0.01" max="0.5" step="0.01" value="0.05" class="w-full" oninput="syncNumber('m1_dt_s','m1_dt')">
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <button id="m1_play" class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="toggleRun(1)">▶ Iniciar</button>
+          <button class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="stepOnce(1)">⏭ Paso a paso (Euler)</button>
+          <button class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="resetModel(1)">↺ Reiniciar</button>
+        </div>
+      </div>
+
+      <!-- Gráficos -->
+      <div class="lg:col-span-2 flex flex-col gap-4">
+        <div class="card p-4">
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-sm font-semibold text-slate-300">Evolución temporal</h3>
+            <span class="badge mono">t = <span id="m1_t">0.00</span></span>
+          </div>
+          <canvas id="m1_chartTime" height="160"></canvas>
+        </div>
+        <div class="card p-4">
+          <h3 class="text-sm font-semibold text-slate-300 mb-2">Plano de fase: Zorros vs Conejos</h3>
+          <canvas id="m1_chartPhase" height="220"></canvas>
+        </div>
+      </div>
+
+      <!-- Explicación / diagrama de bucles -->
+      <div class="card p-4 lg:col-span-1">
+        <h3 class="text-sm font-semibold text-slate-300 mb-3">Diagrama de bucles causales</h3>
+        <svg viewBox="0 0 220 190" class="loop-svg w-full mb-3">
+          <rect x="10" y="15" width="70" height="30" rx="6" fill="none" stroke="var(--rabbit)"/>
+          <text x="45" y="34" text-anchor="middle">Conejos (C)</text>
+          <rect x="140" y="15" width="70" height="30" rx="6" fill="none" stroke="var(--fox)"/>
+          <text x="175" y="34" text-anchor="middle">Zorros (Z)</text>
+          <path d="M45,45 C45,90 30,90 45,120" marker-end="url(#arrow)"/>
+          <text x="20" y="90" font-size="10">R (natalidad a)</text>
+          <path d="M80,30 C110,30 110,30 138,30" marker-end="url(#arrow)"/>
+          <text x="80" y="20" font-size="9">depredación (b)</text>
+          <path d="M175,45 C175,90 190,90 175,120" marker-end="url(#arrow)"/>
+          <text x="178" y="90" font-size="10">B (mortalidad d)</text>
+          <path d="M140,30 C110,60 110,60 82,45" marker-end="url(#arrow)" stroke-dasharray="3,2"/>
+          <text x="95" y="65" font-size="9">alimento (c)</text>
+          <rect x="10" y="120" width="70" height="30" rx="6" fill="none" stroke="var(--rabbit)" opacity=".4"/>
+          <rect x="140" y="120" width="70" height="30" rx="6" fill="none" stroke="var(--fox)" opacity=".4"/>
+          <defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--muted)"/></marker></defs>
+        </svg>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+          El bucle <b class="text-slate-200">R</b> (conejos → nacen más conejos) es reforzador. El bucle <b class="text-slate-200">B</b> (zorros mueren por falta de alimento) es de equilibrio. La depredación conecta ambas poblaciones: reduce a los conejos y alimenta a los zorros.
+        </p>
+        <h3 class="text-sm font-semibold text-slate-300 mb-2">Estado de las ecuaciones</h3>
+        <div class="card-2 p-3 rounded-md mono text-xs leading-6" id="m1_eqBox">
+          dC/dt = a·C − b·C·Z<br>
+          dZ/dt = c·C·Z − d·Z
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODELO 2 ===================== -->
+  <div id="panel2" class="hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+
+      <!-- Controles -->
+      <div class="card p-4 lg:col-span-1">
+        <h2 class="text-sm font-semibold mb-3 text-slate-300">Condiciones iniciales</h2>
+        <div class="space-y-3 mb-5">
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>Población total (N)</span><input type="number" id="m2_N" value="1000" class="mono text-right" oninput="syncSlider('m2_N','m2_N_s')"></div>
+            <input type="range" id="m2_N_s" min="100" max="10000" step="100" value="1000" class="w-full" oninput="syncNumber('m2_N_s','m2_N')">
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>Infectados iniciales (I₀)</span><input type="number" id="m2_I0" value="5" class="mono text-right" oninput="syncSlider('m2_I0','m2_I0_s')"></div>
+            <input type="range" id="m2_I0_s" min="1" max="200" value="5" class="w-full" oninput="syncNumber('m2_I0_s','m2_I0')">
+          </div>
+        </div>
+
+        <h2 class="text-sm font-semibold mb-3 text-slate-300">Parámetros</h2>
+        <div class="space-y-3 mb-4">
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>Beta · transmisión</span><input type="number" step="0.01" id="m2_beta" value="0.30" class="mono text-right" oninput="syncSlider('m2_beta','m2_beta_s')"></div>
+            <input type="range" id="m2_beta_s" min="0" max="1" step="0.01" value="0.30" class="w-full" oninput="syncNumber('m2_beta_s','m2_beta')">
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>Gamma · recuperación</span><input type="number" step="0.01" id="m2_gamma" value="0.10" class="mono text-right" oninput="syncSlider('m2_gamma','m2_gamma_s')"></div>
+            <input type="range" id="m2_gamma_s" min="0.01" max="1" step="0.01" value="0.10" class="w-full" oninput="syncNumber('m2_gamma_s','m2_gamma')">
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>dt (paso Euler)</span><input type="number" step="0.01" id="m2_dt" value="0.1" class="mono text-right" oninput="syncSlider('m2_dt','m2_dt_s')"></div>
+            <input type="range" id="m2_dt_s" min="0.01" max="0.5" step="0.01" value="0.1" class="w-full" oninput="syncNumber('m2_dt_s','m2_dt')">
+          </div>
+        </div>
+
+        <div class="card-2 p-3 rounded-md mb-4">
+          <label class="flex items-center justify-between text-xs cursor-pointer">
+            <span>Inmunidad <b id="m2_modeLabel">Permanente (SIR)</b></span>
+            <input type="checkbox" id="m2_sirs" onchange="toggleSirs()">
+          </label>
+          <div id="m2_deltaWrap" class="hidden mt-2">
+            <div class="flex justify-between text-xs mb-1"><span>δ · pérdida de inmunidad</span><input type="number" step="0.001" id="m2_delta" value="0.02" class="mono text-right" oninput="syncSlider('m2_delta','m2_delta_s')"></div>
+            <input type="range" id="m2_delta_s" min="0" max="0.2" step="0.001" value="0.02" class="w-full" oninput="syncNumber('m2_delta_s','m2_delta')">
+          </div>
+        </div>
+
+        <div class="card-2 p-3 rounded-md mb-4 text-center">
+          <div class="badge">R₀ = Beta / Gamma</div>
+          <div class="text-2xl font-bold mono" id="m2_r0" style="color:var(--accent)">3.00</div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <button id="m2_play" class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="toggleRun(2)">▶ Iniciar</button>
+          <button class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="stepOnce(2)">⏭ Paso a paso (Euler)</button>
+          <button class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="resetModel(2)">↺ Reiniciar</button>
+        </div>
+      </div>
+
+      <!-- Gráficos -->
+      <div class="lg:col-span-2 flex flex-col gap-4">
+        <div class="card p-4">
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-sm font-semibold text-slate-300">Curvas S, I, R en el tiempo</h3>
+            <span class="badge mono">t = <span id="m2_t">0.00</span></span>
+          </div>
+          <canvas id="m2_chartTime" height="220"></canvas>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="card-2 p-3 rounded-md text-center"><div class="badge">Susceptibles</div><div class="mono text-lg" style="color:var(--susc)" id="m2_Sval">995</div></div>
+          <div class="card-2 p-3 rounded-md text-center"><div class="badge">Infectados</div><div class="mono text-lg" style="color:var(--inf)" id="m2_Ival">5</div></div>
+          <div class="card-2 p-3 rounded-md text-center"><div class="badge">Recuperados</div><div class="mono text-lg" style="color:var(--rec)" id="m2_Rval">0</div></div>
+        </div>
+      </div>
+
+      <!-- Explicación / diagrama de bucles -->
+      <div class="card p-4 lg:col-span-1">
+        <h3 class="text-sm font-semibold text-slate-300 mb-3">Diagrama de bucles causales</h3>
+        <svg viewBox="0 0 220 190" class="loop-svg w-full mb-3">
+          <rect x="5" y="15" width="60" height="28" rx="6" fill="none" stroke="var(--susc)"/>
+          <text x="35" y="33" text-anchor="middle" font-size="10">Susceptibles</text>
+          <rect x="80" y="80" width="60" height="28" rx="6" fill="none" stroke="var(--inf)"/>
+          <text x="110" y="98" text-anchor="middle" font-size="10">Infectados</text>
+          <rect x="155" y="15" width="60" height="28" rx="6" fill="none" stroke="var(--rec)"/>
+          <text x="185" y="33" text-anchor="middle" font-size="10">Recuperados</text>
+          <path d="M60,40 C80,60 90,65 95,80" marker-end="url(#arrow2)"/>
+          <text x="55" y="65" font-size="9">contagio (β)</text>
+          <path d="M125,80 C140,60 150,55 160,40" marker-end="url(#arrow2)"/>
+          <text x="145" y="65" font-size="9">recuperación (γ)</text>
+          <path d="M108,108 C108,140 60,150 30,120 C15,105 15,60 25,42" marker-end="url(#arrow2)" stroke-dasharray="3,2" id="m2_loopBack" opacity="0"/>
+          <text x="20" y="130" font-size="9" id="m2_loopBackText" opacity="0">pérdida inmun. (δ)</text>
+          <defs><marker id="arrow2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--muted)"/></marker></defs>
+        </svg>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+          Bucle <b class="text-slate-200">B</b>: los infectados agotan a los susceptibles, frenando el propio contagio. En modo SIRS, los recuperados vuelven a ser susceptibles, generando ondas repetidas.
+        </p>
+        <h3 class="text-sm font-semibold text-slate-300 mb-2">Estado de las ecuaciones</h3>
+        <div class="card-2 p-3 rounded-md mono text-xs leading-6" id="m2_eqBox">
+          dS/dt = −β·S·I/N<br>
+          dI/dt = β·S·I/N − γ·I<br>
+          dR/dt = γ·I
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ============== UTILIDADES DE UI ============== */
+function syncSlider(numId, sliderId){ document.getElementById(sliderId).value = document.getElementById(numId).value; onParamChange(); }
+function syncNumber(sliderId, numId){ document.getElementById(numId).value = document.getElementById(sliderId).value; onParamChange(); }
+
+function switchTab(n){
+  document.getElementById('panel1').classList.toggle('hidden', n!==1);
+  document.getElementById('panel2').classList.toggle('hidden', n!==2);
+  document.getElementById('tabBtn1').classList.toggle('active', n===1);
+  document.getElementById('tabBtn2').classList.toggle('active', n===2);
+}
+
+function onParamChange(){
+  updateR0();
+}
+
+let m1, m1ChartTime, m1ChartPhase, m2, m2ChartTime;
+
+function initApp(){
+
+/* ============== MODELO 1: PRESA-DEPREDADOR ============== */
+m1 = { C:100, Z:15, t:0, running:false, timer:null, history:{t:[],C:[],Z:[]}, phase:[] };
+
+m1ChartTime = new Chart(document.getElementById('m1_chartTime'), {
+  type:'line',
+  data:{ labels:[], datasets:[
+    {label:'Conejos', data:[], borderColor:getCss('--rabbit'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
+    {label:'Zorros', data:[], borderColor:getCss('--fox'), backgroundColor:'transparent', pointRadius:0, tension:0.1}
+  ]},
+  options: baseLineOptions('t', 'Población')
+});
+
+m1ChartPhase = new Chart(document.getElementById('m1_chartPhase'), {
+  type:'line',
+  data:{ datasets:[{ label:'Trayectoria (Z vs C)', data:[], borderColor:getCss('--accent'), backgroundColor:'transparent', pointRadius:0, showLine:true, tension:0 }]},
+  options: baseLineOptions('Conejos (C)', 'Zorros (Z)', true)
+});
+
+function getM1Params(){
+  return {
+    a: parseFloat(document.getElementById('m1_a').value),
+    b: parseFloat(document.getElementById('m1_b').value),
+    c: parseFloat(document.getElementById('m1_c').value),
+    d: parseFloat(document.getElementById('m1_d').value),
+    dt: parseFloat(document.getElementById('m1_dt').value)
+  };
+}
+
+function resetModel1(){
+  m1.C = parseFloat(document.getElementById('m1_C0').value);
+  m1.Z = parseFloat(document.getElementById('m1_Z0').value);
+  m1.t = 0;
+  m1.history = {t:[m1.t], C:[m1.C], Z:[m1.Z]};
+  m1.phase = [{x:m1.C, y:m1.Z}];
+  redrawM1();
+  updateM1Labels();
+}
+
+function eulerStepM1(){
+  const p = getM1Params();
+  const dC = (p.a*m1.C - p.b*m1.C*m1.Z) * p.dt;
+  const dZ = (p.c*m1.C*m1.Z - p.d*m1.Z) * p.dt;
+  m1.C = Math.max(0, m1.C + dC);
+  m1.Z = Math.max(0, m1.Z + dZ);
+  m1.t += p.dt;
+  m1.history.t.push(m1.t);
+  m1.history.C.push(m1.C);
+  m1.history.Z.push(m1.Z);
+  m1.phase.push({x:m1.C, y:m1.Z});
+  if(m1.history.t.length > 4000){
+    m1.history.t.shift(); m1.history.C.shift(); m1.history.Z.shift(); m1.phase.shift();
+  }
+  updateM1Labels();
+}
+
+function updateM1Labels(){
+  const p = getM1Params();
+  document.getElementById('m1_t').textContent = m1.t.toFixed(2);
+  document.getElementById('m1_eqBox').innerHTML =
+    `dC/dt = ${p.a}·${m1.C.toFixed(1)} − ${p.b}·${m1.C.toFixed(1)}·${m1.Z.toFixed(1)} = <b style="color:var(--rabbit)">${(p.a*m1.C - p.b*m1.C*m1.Z).toFixed(2)}</b><br>` +
+    `dZ/dt = ${p.c}·${m1.C.toFixed(1)}·${m1.Z.toFixed(1)} − ${p.d}·${m1.Z.toFixed(1)} = <b style="color:var(--fox)">${(p.c*m1.C*m1.Z - p.d*m1.Z).toFixed(2)}</b>`;
+}
+
+function redrawM1(){
+  m1ChartTime.data.labels = m1.history.t.map(v=>v.toFixed(1));
+  m1ChartTime.data.datasets[0].data = m1.history.C;
+  m1ChartTime.data.datasets[1].data = m1.history.Z;
+  m1ChartTime.update('none');
+
+  m1ChartPhase.data.datasets[0].data = m1.phase;
+  m1ChartPhase.update('none');
+}
+
+/* ============== MODELO 2: SIR / SIRS ============== */
+m2 = { S:995, I:5, R:0, t:0, running:false, timer:null, history:{t:[],S:[],I:[],R:[]} };
+
+m2ChartTime = new Chart(document.getElementById('m2_chartTime'), {
+  type:'line',
+  data:{ labels:[], datasets:[
+    {label:'Susceptibles', data:[], borderColor:getCss('--susc'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
+    {label:'Infectados', data:[], borderColor:getCss('--inf'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
+    {label:'Recuperados', data:[], borderColor:getCss('--rec'), backgroundColor:'transparent', pointRadius:0, tension:0.1}
+  ]},
+  options: baseLineOptions('t', 'Personas')
+});
+
+function getM2Params(){
+  return {
+    N: parseFloat(document.getElementById('m2_N').value),
+    beta: parseFloat(document.getElementById('m2_beta').value),
+    gamma: parseFloat(document.getElementById('m2_gamma').value),
+    dt: parseFloat(document.getElementById('m2_dt').value),
+    sirs: document.getElementById('m2_sirs').checked,
+    delta: parseFloat(document.getElementById('m2_delta').value)
+  };
+}
+
+function toggleSirs(){
+  const on = document.getElementById('m2_sirs').checked;
+  document.getElementById('m2_deltaWrap').classList.toggle('hidden', !on);
+  document.getElementById('m2_modeLabel').textContent = on ? 'Temporal (SIRS)' : 'Permanente (SIR)';
+  document.getElementById('m2_loopBack').style.opacity = on ? 1 : 0;
+  document.getElementById('m2_loopBackText').style.opacity = on ? 1 : 0;
+  document.getElementById('m2_eqBox').innerHTML = on ?
+    `dS/dt = −β·S·I/N + δ·R<br>dI/dt = β·S·I/N − γ·I<br>dR/dt = γ·I − δ·R` :
+    `dS/dt = −β·S·I/N<br>dI/dt = β·S·I/N − γ·I<br>dR/dt = γ·I`;
+}
+
+function resetModel2(){
+  const N = parseFloat(document.getElementById('m2_N').value);
+  const I0 = parseFloat(document.getElementById('m2_I0').value);
+  m2.I = I0;
+  m2.S = N - I0;
+  m2.R = 0;
+  m2.t = 0;
+  m2.history = {t:[0], S:[m2.S], I:[m2.I], R:[m2.R]};
+  redrawM2();
+  updateM2Labels();
+  updateR0();
+}
+
+function eulerStepM2(){
+  const p = getM2Params();
+  const infection = p.beta * m2.S * m2.I / p.N;
+  const recovery = p.gamma * m2.I;
+  const waning = p.sirs ? p.delta * m2.R : 0;
+
+  const dS = (-infection + waning) * p.dt;
+  const dI = (infection - recovery) * p.dt;
+  const dR = (recovery - waning) * p.dt;
+
+  m2.S = Math.max(0, m2.S + dS);
+  m2.I = Math.max(0, m2.I + dI);
+  m2.R = Math.max(0, m2.R + dR);
+  m2.t += p.dt;
+
+  m2.history.t.push(m2.t);
+  m2.history.S.push(m2.S);
+  m2.history.I.push(m2.I);
+  m2.history.R.push(m2.R);
+  if(m2.history.t.length > 4000){
+    m2.history.t.shift(); m2.history.S.shift(); m2.history.I.shift(); m2.history.R.shift();
+  }
+  updateM2Labels();
+}
+
+function updateM2Labels(){
+  document.getElementById('m2_t').textContent = m2.t.toFixed(2);
+  document.getElementById('m2_Sval').textContent = m2.S.toFixed(0);
+  document.getElementById('m2_Ival').textContent = m2.I.toFixed(0);
+  document.getElementById('m2_Rval').textContent = m2.R.toFixed(0);
+}
+
+function updateR0(){
+  const beta = parseFloat(document.getElementById('m2_beta').value);
+  const gamma = parseFloat(document.getElementById('m2_gamma').value);
+  const r0 = gamma > 0 ? (beta/gamma) : 0;
+  document.getElementById('m2_r0').textContent = r0.toFixed(2);
+}
+
+function redrawM2(){
+  m2ChartTime.data.labels = m2.history.t.map(v=>v.toFixed(1));
+  m2ChartTime.data.datasets[0].data = m2.history.S;
+  m2ChartTime.data.datasets[1].data = m2.history.I;
+  m2ChartTime.data.datasets[2].data = m2.history.R;
+  m2ChartTime.update('none');
+}
+
+/* ============== CONTROL GENÉRICO ============== */
+function toggleRun(n){
+  const state = n===1 ? m1 : m2;
+  const btn = document.getElementById(n===1 ? 'm1_play' : 'm2_play');
+  state.running = !state.running;
+  if(state.running){
+    btn.textContent = '⏸ Pausar';
+    state.timer = setInterval(()=>{
+      if(n===1){ eulerStepM1(); redrawM1(); } else { eulerStepM2(); redrawM2(); }
+    }, 40);
+  } else {
+    btn.textContent = '▶ Iniciar';
+    clearInterval(state.timer);
+  }
+}
+
+function stepOnce(n){
+  const state = n===1 ? m1 : m2;
+  if(state.running) toggleRun(n);
+  if(n===1){ eulerStepM1(); redrawM1(); } else { eulerStepM2(); redrawM2(); }
+}
+
+function resetModel(n){
+  const state = n===1 ? m1 : m2;
+  if(state.running) toggleRun(n);
+  if(n===1) resetModel1(); else resetModel2();
+}
+
+/* ============== CHART.JS HELPERS ============== */
+function getCss(varName){
+  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+}
+
+function baseLineOptions(xTitle, yTitle, isPhase){
+  return {
+    animation:false,
+    responsive:true,
+    maintainAspectRatio:false,
+    interaction:{ mode:'nearest', intersect:false },
+    plugins:{
+      legend:{ labels:{ color: getCss('--text'), boxWidth:12, font:{size:11} } },
+      tooltip:{ enabled:true }
+    },
+    scales:{
+      x:{ title:{ display:true, text:xTitle, color:getCss('--muted') }, ticks:{ color:getCss('--muted'), maxTicksLimit:8 }, grid:{ color:getCss('--line') }, type: isPhase ? 'linear' : 'category' },
+      y:{ title:{ display:true, text:yTitle, color:getCss('--muted') }, ticks:{ color:getCss('--muted') }, grid:{ color:getCss('--line') }, beginAtZero:true }
+    }
+  };
+}
+
+/* ============== INICIALIZACIÓN ============== */
+// Ajustar altura de canvas contenedores
+document.getElementById('m1_chartTime').parentElement.style.height='220px';
+document.getElementById('m1_chartPhase').parentElement.style.height='260px';
+document.getElementById('m2_chartTime').parentElement.style.height='320px';
+
+resetModel1();
+resetModel2();
+updateR0();
+
+} // fin de initApp()
+</script>
+</body>
+</html>
