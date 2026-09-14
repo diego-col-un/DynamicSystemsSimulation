@@ -1,6 +1,6 @@
 # Simulador de Dinámica de Sistemas
 
-Aplicación web interactiva de un solo archivo (`dinamica_sistemas.html`) que simula dos ejercicios clásicos del libro **"Teoría y Ejercicios Prácticos de Dinámica de Sistemas"** de Juan Martín García, usando integración numérica por el **método de Euler**.
+Aplicación web interactiva de un solo archivo (`index.html`) que simula dos ejercicios clásicos del libro **"Teoría y Ejercicios Prácticos de Dinámica de Sistemas"** de Juan Martín García, usando integración numérica por el **método de Euler**.
 
 No requiere instalación, servidor ni build: se abre directamente en el navegador.
 
@@ -14,10 +14,9 @@ No requiere instalación, servidor ni build: se abre directamente en el navegado
 
 Al ser un HTML estático sin backend, se puede desplegar sin configuración adicional:
 
-1. Renombra `dinamica_sistemas.html` a `index.html` (para que Vercel lo sirva en la raíz del dominio).
-2. Sube el archivo a un repositorio de GitHub, o arrástralo directamente en [vercel.com/new](https://vercel.com/new).
-3. Si usas GitHub: en Vercel elige **Import Project**, selecciona el repositorio y despliega — no hace falta build command ni framework preset (elige "Other").
-4. Ya está desplegado en la URL que ves arriba en **Demo en vivo**. Cada vez que actualices el archivo y vuelvas a desplegar, Vercel genera una nueva URL de preview o actualiza la de producción, según cómo lo hayas configurado.
+1. Sube el archivo a un repositorio de GitHub, o arrástralo directamente en [vercel.com/new](https://vercel.com/new).
+2. Si usas GitHub: en Vercel elige **Import Project**, selecciona el repositorio y despliega — no hace falta build command ni framework preset (elige "Other").
+3. Ya está desplegado en la URL que ves arriba en **Demo en vivo**. Cada vez que actualices el archivo y vuelvas a desplegar, Vercel genera una nueva URL de preview o actualiza la de producción, según cómo lo hayas configurado.
 
 ## Contenido
 
@@ -30,13 +29,6 @@ Al ser un HTML estático sin backend, se puede desplegar sin configuración adic
 - Un navegador moderno (Chrome, Firefox, Edge, Safari).
 - Conexión a internet la primera vez que se abre, para cargar Tailwind CSS y Chart.js desde CDN (`cdn.tailwindcss.com`, `cdn.jsdelivr.net` y, como respaldo, `cdnjs.cloudflare.com`). Si no hay conexión, la app muestra un mensaje indicándolo en vez de fallar en blanco.
 
-## Cómo usarlo
-
-1. Descarga `dinamica_sistemas.html`.
-2. Ábrelo con doble clic o arrastrándolo a una ventana del navegador.
-3. Elige la pestaña del ejercicio que quieras explorar.
-4. Ajusta condiciones iniciales y parámetros con los sliders o los campos numéricos (están sincronizados entre sí).
-5. Usa los botones de control para correr la simulación.
 
 ### Controles de simulación
 
