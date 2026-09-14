@@ -115,6 +115,43 @@ dR/dt = γ·I − δ·R
 - Diagrama de bucles causales: bucle de equilibrio del contagio, con un bucle adicional de retorno cuando el modo SIRS está activo.
 - Caja de ecuaciones que cambia según el modo (SIR o SIRS).
 
+## Ejercicio 5.1 · Dinámica de Población y Medio Ambiente (Vensim)
+
+A diferencia de los ejercicios 1 y 2, este ejercicio no está implementado en `index.html`, sino como un **modelo de Vensim** independiente, incluido en el repositorio como [`Poblacion_MedioAmbiente.mdl`](./Poblacion_MedioAmbiente.mdl). Sirve como primer contacto con el software Vensim: instalación, construcción del diagrama de flujos, entrada de ecuaciones y simulación.
+
+**Variable de estado (nivel)**
+
+- `Población` — número de individuos (inicial: 1000)
+
+**Flujos**
+
+- `Nacimientos` = `Población · Tasa de Natalidad` (flujo de entrada)
+- `Defunciones` = `Población / Esperanza de Vida` (flujo de salida)
+
+**Parámetros (constantes)**
+
+| Símbolo | Significado | Valor |
+|---|---|---|
+| `Tasa de Natalidad` | Tasa de natalidad semanal | 0.05 (1/semana) |
+| `Esperanza de Vida` | Esperanza de vida media | 100 (semana) |
+
+**Ecuación del nivel**
+
+```
+Población(t) = Población(t−dt) + (Nacimientos − Defunciones)·dt
+```
+
+**Cómo simularlo**
+
+1. Descarga [Vensim PLE](https://vensim.com/free-download/) (gratuito, uso educativo).
+2. Abre `Poblacion_MedioAmbiente.mdl` con **File → Open**.
+3. Pulsa **Run (▶)** para simular (horizonte por defecto: 0–100 semanas, `dt` = 1).
+4. Selecciona la variable `Población` y usa los iconos de gráfico/tabla de la barra lateral para ver su evolución.
+
+**Comportamiento esperado**
+
+Al no depender la natalidad ni la mortalidad del tamaño de la población, el bucle de realimentación positivo (nacimientos) domina sobre el bucle de equilibrio (defunciones), y la población crece de forma **exponencial** sin límite — pasando de 1000 a más de 5000 individuos hacia la semana 100.
+
 ## Notas técnicas
 
 - La integración usa el **método de Euler explícito**: `x(t+dt) = x(t) + f(x,t)·dt`.
