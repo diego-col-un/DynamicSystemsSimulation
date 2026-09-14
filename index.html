@@ -7,20 +7,69 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script>
-  // Fallback por si el CDN principal no carga (p.ej. sin conexión a jsdelivr)
-  window.addEventListener('DOMContentLoaded', function(){
-    if (typeof Chart === 'undefined') {
-      var fallback = document.createElement('script');
-      fallback.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js';
-      fallback.onload = initApp;
-      fallback.onerror = function(){
-        document.body.innerHTML = '<div style="padding:40px;color:#e8636b;font-family:sans-serif">No se pudo cargar Chart.js desde la red. Verifica tu conexión a internet e intenta recargar la página.</div>';
-      };
-      document.head.appendChild(fallback);
-    } else {
-      initApp();
+  function loadScript(src, onLoad, onError) {
+    var existing = document.querySelector('script[src="' + src + '"]');
+    if (existing) {
+      if (existing.dataset.loaded === 'true') {
+        onLoad && onLoad();
+      } else {
+        existing.addEventListener('load', onLoad, { once: true });
+      }
+      return;
     }
-  });
+
+    var tag = document.createElement('script');
+    tag.src = src;
+    tag.async = false;
+    tag.defer = true;
+    tag.onload = function () {
+      tag.dataset.loaded = 'true';
+      onLoad && onLoad();
+    };
+    tag.onerror = function () {
+      onError && onError();
+    };
+    document.head.appendChild(tag);
+  }
+
+  function bootstrapCharts() {
+    if (typeof Chart !== 'undefined') {
+      initApp();
+      return;
+    }
+
+    loadScript(
+      'https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js',
+      function () {
+        if (typeof Chart !== 'undefined') {
+          initApp();
+        } else {
+          loadScript('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js', function () {
+            if (typeof Chart !== 'undefined') {
+              initApp();
+            } else {
+              document.body.innerHTML = '<div style="padding:40px;color:#e8636b;font-family:sans-serif">No se pudo cargar Chart.js desde la red. Verifica tu conexión a internet e intenta recargar la página.</div>';
+            }
+          }, function () {
+            document.body.innerHTML = '<div style="padding:40px;color:#e8636b;font-family:sans-serif">No se pudo cargar Chart.js desde la red. Verifica tu conexión a internet e intenta recargar la página.</div>';
+          });
+        }
+      },
+      function () {
+        loadScript('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js', function () {
+          if (typeof Chart !== 'undefined') {
+            initApp();
+          } else {
+            document.body.innerHTML = '<div style="padding:40px;color:#e8636b;font-family:sans-serif">No se pudo cargar Chart.js desde la red. Verifica tu conexión a internet e intenta recargar la página.</div>';
+          }
+        }, function () {
+          document.body.innerHTML = '<div style="padding:40px;color:#e8636b;font-family:sans-serif">No se pudo cargar Chart.js desde la red. Verifica tu conexión a internet e intenta recargar la página.</div>';
+        });
+      }
+    );
+  }
+
+  window.addEventListener('DOMContentLoaded', bootstrapCharts);
 </script>
 <style>
   :root{
@@ -291,26 +340,7 @@ function onParamChange(){
 
 let m1, m1ChartTime, m1ChartPhase, m2, m2ChartTime;
 
-function initApp(){
-
 /* ============== MODELO 1: PRESA-DEPREDADOR ============== */
-m1 = { C:100, Z:15, t:0, running:false, timer:null, history:{t:[],C:[],Z:[]}, phase:[] };
-
-m1ChartTime = new Chart(document.getElementById('m1_chartTime'), {
-  type:'line',
-  data:{ labels:[], datasets:[
-    {label:'Conejos', data:[], borderColor:getCss('--rabbit'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
-    {label:'Zorros', data:[], borderColor:getCss('--fox'), backgroundColor:'transparent', pointRadius:0, tension:0.1}
-  ]},
-  options: baseLineOptions('t', 'Población')
-});
-
-m1ChartPhase = new Chart(document.getElementById('m1_chartPhase'), {
-  type:'line',
-  data:{ datasets:[{ label:'Trayectoria (Z vs C)', data:[], borderColor:getCss('--accent'), backgroundColor:'transparent', pointRadius:0, showLine:true, tension:0 }]},
-  options: baseLineOptions('Conejos (C)', 'Zorros (Z)', true)
-});
-
 function getM1Params(){
   return {
     a: parseFloat(document.getElementById('m1_a').value),
@@ -367,18 +397,6 @@ function redrawM1(){
 }
 
 /* ============== MODELO 2: SIR / SIRS ============== */
-m2 = { S:995, I:5, R:0, t:0, running:false, timer:null, history:{t:[],S:[],I:[],R:[]} };
-
-m2ChartTime = new Chart(document.getElementById('m2_chartTime'), {
-  type:'line',
-  data:{ labels:[], datasets:[
-    {label:'Susceptibles', data:[], borderColor:getCss('--susc'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
-    {label:'Infectados', data:[], borderColor:getCss('--inf'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
-    {label:'Recuperados', data:[], borderColor:getCss('--rec'), backgroundColor:'transparent', pointRadius:0, tension:0.1}
-  ]},
-  options: baseLineOptions('t', 'Personas')
-});
-
 function getM2Params(){
   return {
     N: parseFloat(document.getElementById('m2_N').value),
@@ -511,17 +529,44 @@ function baseLineOptions(xTitle, yTitle, isPhase){
   };
 }
 
-/* ============== INICIALIZACIÓN ============== */
-// Ajustar altura de canvas contenedores
-document.getElementById('m1_chartTime').parentElement.style.height='220px';
-document.getElementById('m1_chartPhase').parentElement.style.height='260px';
-document.getElementById('m2_chartTime').parentElement.style.height='320px';
+/* ============== INICIALIZACIÓN (se ejecuta cuando Chart.js ya cargó) ============== */
+function initApp(){
+  m1 = { C:100, Z:15, t:0, running:false, timer:null, history:{t:[],C:[],Z:[]}, phase:[] };
+  m2 = { S:995, I:5, R:0, t:0, running:false, timer:null, history:{t:[],S:[],I:[],R:[]} };
 
-resetModel1();
-resetModel2();
-updateR0();
+  m1ChartTime = new Chart(document.getElementById('m1_chartTime'), {
+    type:'line',
+    data:{ labels:[], datasets:[
+      {label:'Conejos', data:[], borderColor:getCss('--rabbit'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
+      {label:'Zorros', data:[], borderColor:getCss('--fox'), backgroundColor:'transparent', pointRadius:0, tension:0.1}
+    ]},
+    options: baseLineOptions('t', 'Población')
+  });
 
-} // fin de initApp()
+  m1ChartPhase = new Chart(document.getElementById('m1_chartPhase'), {
+    type:'line',
+    data:{ datasets:[{ label:'Trayectoria (Z vs C)', data:[], borderColor:getCss('--accent'), backgroundColor:'transparent', pointRadius:0, showLine:true, tension:0 }]},
+    options: baseLineOptions('Conejos (C)', 'Zorros (Z)', true)
+  });
+
+  m2ChartTime = new Chart(document.getElementById('m2_chartTime'), {
+    type:'line',
+    data:{ labels:[], datasets:[
+      {label:'Susceptibles', data:[], borderColor:getCss('--susc'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
+      {label:'Infectados', data:[], borderColor:getCss('--inf'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
+      {label:'Recuperados', data:[], borderColor:getCss('--rec'), backgroundColor:'transparent', pointRadius:0, tension:0.1}
+    ]},
+    options: baseLineOptions('t', 'Personas')
+  });
+
+  document.getElementById('m1_chartTime').parentElement.style.height='220px';
+  document.getElementById('m1_chartPhase').parentElement.style.height='260px';
+  document.getElementById('m2_chartTime').parentElement.style.height='320px';
+
+  resetModel1();
+  resetModel2();
+  updateR0();
+}
 </script>
 </body>
 </html>
