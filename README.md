@@ -4,6 +4,21 @@ Aplicación web interactiva de un solo archivo (`dinamica_sistemas.html`) que si
 
 No requiere instalación, servidor ni build: se abre directamente en el navegador.
 
+## Demo en vivo
+
+### 🚀 [Abrir el simulador](https://dynamic-systems-simulation-63wznjnob.vercel.app/)
+
+[![Ver demo en Vercel](https://img.shields.io/badge/demo-en%20vivo-2DD4BF?style=for-the-badge&logo=vercel&logoColor=white)](https://dynamic-systems-simulation-63wznjnob.vercel.app/)
+
+## Despliegue en Vercel
+
+Al ser un HTML estático sin backend, se puede desplegar sin configuración adicional:
+
+1. Renombra `dinamica_sistemas.html` a `index.html` (para que Vercel lo sirva en la raíz del dominio).
+2. Sube el archivo a un repositorio de GitHub, o arrástralo directamente en [vercel.com/new](https://vercel.com/new).
+3. Si usas GitHub: en Vercel elige **Import Project**, selecciona el repositorio y despliega — no hace falta build command ni framework preset (elige "Other").
+4. Ya está desplegado en la URL que ves arriba en **Demo en vivo**. Cada vez que actualices el archivo y vuelvas a desplegar, Vercel genera una nueva URL de preview o actualiza la de producción, según cómo lo hayas configurado.
+
 ## Contenido
 
 - HTML + CSS (Tailwind vía CDN) + JavaScript vanilla, todo en un único archivo.
