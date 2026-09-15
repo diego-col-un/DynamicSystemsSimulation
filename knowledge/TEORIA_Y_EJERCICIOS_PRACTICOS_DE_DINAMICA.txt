@@ -1,0 +1,2160 @@
+                     TEORIA Y EJERCICIOS PRACTICOS DE DINAMICA DE SISTEMAS
+
+                     Prólogo de John Sterman, Director del System Dynamics Group de la Sloan School of Management
+                     del MIT.
+                     Contiene 320 páginas de gran formato (DIN A4) para que se puedan apreciar con claridad todos los
+                     esquemas y diagramas de los 25 ejercicios prácticos que se hallan detalladamente explicados.
+                     Incluye un CD con el software Vensim PLE ®, todos los textos en formato pdf del libro, los modelos
+                     correspondientes a los ejercicios prácticos, y una selección de textos complementarios en español.
+
+                                                                INDICE
+
+                       Prólogo de John Sterman (versión original)
+                       Presentación
+
+1. Introducción
+2. Dinámica de Sistemas
+2.1. La Dinámica de Sistemas
+2.2. Identificar el problema
+2.3. Definir el Sistema
+2.4. Las fronteras de un sistema
+2.5. Diagrama Causal
+2.6. Retroalimentación
+2.7. El factor limitativo
+2.8. Los factores clave
+2.9. Tipos de sistemas
+2.9.1. Sistemas estables e inestables
+2.9.2. Sistemas hiperestables
+2.9.3. Sistemas oscilantes
+2.9.4. Sistemas sigmoidales
+2.10. Estructuras genéricas
+2.10.1. Resistencia al cambio
+2.10.2. Erosión de objetivo
+2.10.3. Adicción
+2.10.4. Paso de la carga al factor externo
+2.10.5. Efectos a corto y a largo plazo
+2.11. Los modelos del mundo
+2.12. Aplicaciones de la Dinámica de Sistemas
+3. Dinámica de Sistemas Sociales
+3.1. Estado deseado
+3.2. Estado real
+3.3. La Diferencia
+3.4. La Acción
+3.5. Análisis del Comportamiento Humano
+4. Construcción de un modelo
+4.1. Diagrama de Forrester
+4.2. Simulación en ordenador
+4.3. Comportamiento del Modelo
+4.4. Análisis del Sistema
+4.5. Criticas a los modelos
+5. Ejercicios
+Area Ambiental
+5.1. Dinámica poblacional
+5.2. Ecología de una reserva natural
+5.3. Efectos de la agricultura intensiva
+5.4. La pesca del camarón en Campeche
+5.5. Conejos y zorros
+5.6. Problemática ganadera
+5.7. Ingestión de tóxicos
+5.8. Los Barays de Angkor
+
+Area Empresarial
+5.9. Gestión dinámica de existencias
+5.10. Emisiones de CO2
+5.11. Como producir más y mejor
+5.12. Averías
+5.13. Gestión dinámica de un proyecto
+5.14. Un modelo de empresa innovadora
+5.15. Control de calidad
+5.16. Impacto de los Planes de Negocio
+
+Area Social
+5.16. Dinámica poblacional
+5.17. Llenando un vaso
+5.18. Estudio de una Catástrofe
+5.19. El joven ambicioso
+5.20. Desarrollo de una epidemia
+5.21. Dinámica de los dos relojes
+5.22. El Efecto Mariposa
+
+Area Mecánica
+5.23. Dinámica de un depósito
+5.24. Estudio de los movimientos oscilatorios
+5.25. Reactor químico
+5.26. La farola de Darder
+5.27. El Número de Oro
+
+6. Guía para crear un modelo
+7. Epílogo
+
+ANEXOS
+
+                      1. Lecturas complementarias de teoría
+                      2. Funciones, Tablas y Retrasos
+                      3. Preguntas Frecuentes
+                      4. Cursos de Formación
+                      5. Software
+                      6. Bibliografía
+                      7. Agradecimientos
+
+                 2.3 Definición de Sistema
+
+                 Un sistema es un conjunto de "elementos" relacionados entre sí, de forma tal que un cambio
+                 en un elemento afecta al conjunto de todos ellos. Los elementos relacionados directa o
+                 indirectamente con el problema, y sólo estos, formarán el sistema que vamos a estudiar.
+
+                 Para estudiar un sistema hemos de conocer los elementos que lo forman y las relaciones que
+                 existen entre ellos.
+
+                 En nuestra usual forma de análisis nos solemos centrar en las características de los elementos
+                 que componen el sistema, no obstante, para comprender el funcionamiento de sistemas
+                 complejos es necesario prestar atención a las relaciones entre los elementos que forman el
+                 sistema.
+
+                 Es imposible entender la esencia de una orquesta sinfónica únicamente prestando atención a
+                 los músicos y a sus instrumentos, es la coordinación que tienen entre sí la que produce la
+música hermosa. El cuerpo humano, un bosque, una nación, el ecosistema de una barrera de
+coral son mucho más que la suma de sus partes.
+
+Como dice un antiguo proverbio Sufí: Tu puedes pensar porque entiendes el concepto de
+"uno", y de ahí entiendes "dos", que es "uno" y "uno", pero para ello además has de entender
+el concepto "y". Y así, por ejemplo, en el problema del tráfico confluyen muchos elementos
+relacionados entre sí: número de habitantes, número de coches, precio de la gasolina,
+aparcamientos, transportes alternativos, ... es con frecuencia más fácil y efectivo para
+solucionar un problema actuar sobre las relaciones entre los elementos (las "y"), que modificar
+los elementos.
+
+Un buen método para empezar a definir un sistema es escribir el problema en el centro de una
+hoja en blanco, añadir a su alrededor los aspectos relacionados directamente con el problema,
+y alrededor de éstos últimos los otros aspectos relacionados con ellos, y por lo tanto que se
+relacionan indirectamente con el problema. Ese será el sistema que vamos a estudiar para
+plantear soluciones al problema. Ya sabemos que en teoría una mariposa volando en China
+puede llegar a provocar un tornado en el Caribe, pero en la práctica, incluiremos en nuestro
+estudio sólo aquellos elementos que tienen una influencia razonable en el comportamiento
+del sistema, ya que no hemos de olvidar que tenemos un objetivo: proponer alguna acción
+práctica que sea eficaz para solucionar el problema que estudiamos.
+
+El sistema debe de contener el menor número de elementos posible, que nos permita realizar
+una simulación para explicar al final cual de las propuestas de actuación que hemos estudiado
+es más eficaz para solucionar el problema que nos plantean.
+
+2.5 Diagrama Causal
+
+El conjunto de los elementos que tienen relación con nuestro problema y permiten en
+principio explicar el comportamiento observado, junto con las relaciones entre ellos, en
+muchos casos de retroalimentación, forman el Sistema. El Diagrama Causal es un diagrama
+que recoge los elementos clave del Sistema y las relaciones entre ellos.
+
+Como hemos dicho es importante empezar a hacer versiones que poco a poco nos vayan
+aproximando a la complejidad del modelo. La gama mínima de elementos y relaciones que
+permita reproducir la Referencia Histórica, será la que forme la estructura básica del sistema.
+
+Una vez conocidas globalmente las variables del sistema y las hipotéticas relaciones causales
+existentes entre ellas, se pasa a la representación gráfica de las mismas. En este diagrama, las
+diferentes relaciones están representadas por flechas entre las variables afectadas por ellas.
+
+Esas flechas van acompañadas de un signo (+ o -) que indica el tipo de influencia ejercida por
+una variable sobre la otra. Un signo "+" quiere decir que un cambio en la variable origen de la
+flecha producirá un cambio del mismo sentido en la variable destino. El signo "-" simboliza que
+el efecto producido será en sentido contrario.
+
+Así cuando un incremento de A, produce un incremento de B, o bien una disminución de A
+provoca una disminución de B, tendremos una relación positiva.
+
+Y cuando un incremento de A, produce una disminución de B, o bien una disminución de A
+provoca un aumento de B, tendremos una relación negativa.
+
+Una cadena cerrada de relaciones causales recibe el nombre de bucle, retroalimentación o
+feedback. Cuando abrimos el grifo para llenar un vaso de agua aumentamos la cantidad de
+agua en el vaso, pero también la cantidad de agua que va habiendo en el vaso modifica la
+velocidad en la que nosotros llenamos el vaso. Lo llenamos más despacio cuando está casi
+lleno; y por to tanto existe un bucle.
+
+El sistema formado por nosotros, el grifo y el vaso de agua es un bucle negativo porque está
+dirigido a conseguir un objetivo, llenar el vaso sin que se exceda. Los bucles negativos actúan
+como elementos estabilizadores de los sistemas al dirigirlos hacia un objetivo determinado,
+igual que el termostato de la calefacción la dirige hacia la temperatura seleccionada.
+
+Los bucles se definen como "positivos" cuando el número de relaciones "negativas" es par, y
+"negativos" si es impar (igual que al multiplicar: -a x b = -c).
+
+Los bucles negativos llevan al modelo hacia una situación estable y los positivos lo hacen
+inestable, con independencia de la situación de partida.
+
+En la realidad los sistemas contienen ambos tipos de bucles y el comportamiento final
+dependerá de cual es el dominante en un momento determinado.
+
+Cuando un país adquiere más armamento hace que sus vecinos se sientan amenazados y les
+induce a adquirir ellos también más armamento. Este es un bucle positivo, también llamado un
+círculo vicioso que crece sobre sí mismo más y más. Los bucles positivos causan crecimiento,
+evolución y también el colapso de los sistemas.
+
+Naturalmente los sistemas socioeconómicos y ecológicos están formados por cientos de bucles
+positivos y negativos interconectados, y su comportamiento final no es evidente.
+
+El concepto de bucle es muy útil porque nos permite partir desde la estructura del sistema que
+analizamos y llegar hasta su comportamiento dinámico. Si un sistema oscila persistentemente,
+o se halla en equilibrio, o decae con rapidez, podemos identificar las razones estructurales y
+decidir como modificar los bucles causales que lo van a alterar. La aplicación de esta forma de
+actuar se extiende desde el control de un proceso industrial, al seguimiento de la diabetes o el
+cáncer, variaciones de los precios de las materias primas y el crecimiento económico.
+
+Pero la utilidad más importante de esta concepción es comprender como la estructura de los
+sistemas provoca su comportamiento. En un mismo mercado, en un mismo año, varias
+empresas que ofrecen el mismo producto presentan resultados económicos muy diferentes.
+Los gerentes menos competentes argumentan múltiples causas ajenas a ellos: los costes
+laborales, la competencia, los hábitos de los clientes, ... cuando en realidad deberían de
+estudiar porqué los sistemas que ellos controlan (sus empresas) tienen una estructura menos
+competitiva que aquellos otros que han presentado mejores resultados.
+
+El país A percibe que la carrera de armamentos fue causada por el país B y viceversa. Pero en
+realidad también puede afirmarse que el país A ha provocado su rearme al adquirir armas, que
+motivan el rearme del país B. De forma similar el crecimiento de los precios del crudo se debe
+tanto a la concentración de la producción en unos pocos países como en el excesivo aumento
+del consumo en los países desarrollados, de un producto que en definitiva es limitativo al no
+ser renovable.
+
+Identificar que la causa de los problemas no es algo externo al sistema no suele ser muy
+popular, ya que es más fácil achacarlo a factores externos e incontrolables por nosotros. Lo
+que ocurre es que si el mismo que expone el argumento de la causa externa cree
+verdaderamente en lo que dice, no podrá identificar la verdadera causa del problema - dentro
+del sistema - y obtener los resultados deseados. Si el sistema tiene los elementos que causan
+el problema también tiene la forma en la que se puede solucionar.
+Así por ejemplo, la curva de vida de un producto puede decirse que se halla regulada
+inicialmente por un bucle positivo que permite un rápido crecimiento exponencial, al que sigue
+una fase de estabilidad dominada por un bucle negativo en el que interviene la saturación del
+mercado, y por último una caída, que suele ser también brusca, debido a la aparición de
+productos substitutivos de rápido crecimiento.
+
+Por último, señalar que el diagrama causal es de gran importancia para la explicación del
+modelo final al usuario, si este no está familiarizado con esta técnica lo cual suele ser usual.
+
+2. 12 Aplicaciones de la Dinámica de Sistemas
+
+La Dinámica de Sistemas se utiliza dentro de las empresas en ámbitos operativos, como por
+ejemplo en la Gestión de Proyectos. Las herramientas habituales de Gestión de Proyectos
+permiten organizar las tareas que se han de hacer de una forma lineal, pero tienen dificultades
+para gestionar imprevistos, cambios bruscos en la planificación, o errores en las tareas ya
+realizadas.
+
+La Dinámica de Sistemas no pretende sustituir a los clásicos PERT o Project Management en la
+ordenación de las tareas que componen un proyecto, pero puede ayudar a comprender y
+prevenir los habituales problemas que aparecen en la ejecución de los proyectos, como son los
+retrasos en la entrega, la baja calidad del producto final o el incremento en los costes reales en
+relación al presupuesto.
+
+La Dinámica de Sistemas se utiliza tanto en el diseño de grandes proyectos de infraestructura,
+como son las presas y carreteras, como en la gestión de proyectos empresariales mucho más
+pequeños como el cambio de emplazamiento de la fábrica o el lanzamiento de un nuevo
+producto.
+
+En el ámbito de la Gestión de la Producción, la Dinámica de Sistemas nos permite comprender
+mejor la causa de algunos problemas como los retrasos en la producción, o de las oscilaciones
+en el número de piezas que hay en el almacén de productos acabados, y simular de una forma
+transparente el impacto de diferentes formas de organizar la producción.
+
+En este campo la Dinámica de Sistemas aporta una visión dinámica de los aspectos que
+intervienen en la producción y permite realizar simulaciones sobre el modelo para identificar
+aquellos aspectos clave.
+
+Los modelos de Gestión de la Producción tienen una gran complejidad aparente debido a la
+necesidad de integrar muchos y diferentes factores, pero en realidad las relaciones que existen
+entre los elementos obedecen a reglas y normas bien establecidas, lo cual facilita el trabajo de
+creación de modelos de simulación.
+
+Dentro de la Gestión de Procesos un modelo de Dinámica de Sistemas nos permite simular la
+estructura de cada proceso y realizar análisis de sensibilidad de sus diferentes fases. La puesta
+en marcha de un nuevo proceso presenta con frecuencia muchos imprevistos, que son difíciles
+de corregir cuando ya funciona porque cualquier cambio influye en otras partes del proceso.
+Un modelo de simulación de Dinámica de Sistemas ayuda a identificar el impacto de pequeñas
+variaciones aleatorias en la evolución general del proceso. También puede ayudar a identificar
+aquellos puntos del proceso que presentan retrasos, al objeto de organizar el conjunto del
+proceso productivo teniendo presente este aspecto, sin crear por ello falsas señales de alarma.
+En el ámbito de la Gestión de los Recursos Humanos de la empresa, la Dinámica de Sistemas
+también es una aportación muy valiosa, ya que permite analizar la influencia en la evolución
+de la empresa de aspectos no cuantificables como son la motivación, la política de objetivos de
+la empresa o el nivel de formación de los empleados, en el análisis de problemas muy
+concretos como por ejemplo, según mi propia experiencia, en el número de accidentes de
+trabajo.
+
+Esta herramienta permite trabajar con elementos que no se pueden cuantificar, y organizarlos
+en un modelo de simulación que permite a la dirección de la empresa extraer conclusiones de
+aplicación práctica.
+
+Dentro de la Gestión de la Investigación y el Conocimiento para el desarrollo de nuevos
+productos en la empresa, los modelos de simulación de la Dinámica de Sistemas son una
+herramienta mucho más eficaz y económica que la realización de experimentos en laboratorio.
+De forma que deberían de ser siempre un paso previo obligado a los experimentos reales.
+Existen dos motivos importantes para ello, uno es el coste, ya que cualquier error en el
+experimento de laboratorio puede ser muy costoso económicamente de solucionar, y también
+existe un motivo vinculado a la seguridad física de las personas y las instalaciones. Por ello, los
+experimentos reales deben de servir para confirmar los resultados del modelo de simulación.
+
+Por último, podemos citar brevemente las aplicaciones en Gestión y Dirección de Empresas,
+que van desde el estudio de inversiones, sean inmobiliarias o financieras, la gestión del cambio
+organizacional, la gestión del conocimiento, la implantación de nuevas tecnologías, o el diseño
+de políticas de calidad.
+
+La Dinámica de Sistemas también se aplica a la mejora de las habilidades directivas a través de
+los Business Games, como el conocido Juego de la Cerveza, donde los participantes pueden
+apreciar bien la importancia de los retrasos en la transmisión de la información y cómo nuestro
+propio modelo mental influye en la percepción de una situación.
+
+Los modelos creados con Dinámica de Sistemas tienen un gran campo de aplicación en las
+empresas. Se describen a continuación de forma muy breve cinco trabajos desarrollados por el
+autor del libro.
+
+Debido a las limitaciones que imponen las empresas a las personas que realizan este tipo de
+estudios, se omite el nombre de la empresa y destalles clave del trabajo realizado.
+
+4.1 Diagrama de Forrester
+
+El Diagrama de Flujos, también denominado Diagrama de Forrester, es el diagrama
+característico de la Dinámica de Sistemas. Es una traducción del Diagrama Causal a una
+terminología que permite la escritura de las ecuaciones en el ordenador para así poder validar
+el modelo, observar la evolución temporal de las variables y hacer análisis de sensibilidad..
+
+No hay unas reglas precisas de como hacer esta transformación, pero si hay alguna forma de
+abordar este proceso. Pasos a seguir:
+
+1º. Hacer una fotografía mental al sistema y lo que salga en ella (personas, km2, litros,
+animales,..) eso son Niveles.
+
+2º. Buscar o crear unos elementos que sean "la variación de los Niveles", (personas/día,
+litros/hora, ...) y esos son los Flujos.
+
+3º. El resto de elementos son las Variables Auxiliares.
+Como regla general esto sirve para empezar. Después ya se pueden ir haciendo retoques, y así
+los Niveles que vayan a permanecer constantes (m2 de la habitación) en vez de definirlos
+como Niveles se pueden definir como variables auxiliares tipo constante que es más sencillo.
+Este es todo el procedimiento. Ahora veremos con más detalle como se representan estos
+elementos.
+
+Los "Niveles" son aquellos elementos que nos muestran en cada instante la situación del
+modelo, presentan una acumulación y varían solo en función de otros elementos denominados
+"flujos". Las "nubes" dentro del diagrama de flujos son niveles de contenido inagotable. Los
+niveles se representan por un rectángulo.
+
+Los "Flujos" son elementos que pueden definirse como funciones temporales. Puede decirse
+que recogen las acciones resultantes de las decisiones tomadas en el sistema, determinando
+las variaciones de los niveles.
+
+Las "Variables auxiliares" y las "Constantes", son parámetros que permiten una visualización
+mejor de los aspectos que condicionan el comportamiento de los flujos.
+
+Las magnitudes físicas entre flujos y niveles se transmiten a través de los denominados
+"canales materiales". Por otra parte existen los llamados "canales de información", que
+transmiten, como su nombre indica, informaciones que por su naturaleza no se conservan.
+
+Por último quedan por definir los "retardos", que simulan los retrasos de tiempo en la
+transmisión de los materiales o las informaciones. En los sistemas socioeconómicos es
+frecuente la existencia de retardos en la transmisión de la información y de los materiales y
+tienen gran importancia en el comportamiento del sistema.
+
+Para los retardos de material existen las funciones DELAY1 y SMOOTH. Para los de información
+se utilizan DELAY3 y SMOOTH3. Los de primer orden frente a una entrada escalón,
+responderán con una curva exponencialmente asintótica, mientras que un retardo de tercer
+orden conduce a una curva sigmoidal. En cierta forma los retardos de información actúan
+como filtros alisadores de la variable de entrada.
+
+5. EJERCICIOS
+
+Ejercicio 5.1. DINAMICA DE POBLACION Y MEDIO AMBIENTE
+
+Una población se halla formada inicialmente por 1000 individuos, su tasa de natalidad es del
+5% semanal, y su esperanza media de vida es de 100 semanas. No hay migraciones y la
+distribución de edades de la población es uniforme. Si se mantienen constantes la tasa de
+natalidad y la esperanza de vida obtendremos una determinada evolución temporal del
+número de individuos. ¿Puedes hacer una estimación sin ayuda del ordenador de qué
+sucederá con el número de individuos en estas circunstancias al cabo de pocas semanas?
+
+Vamos a utilizar un Diagrama Causal y vamos a representar los elementos del sistema, que en
+este caso son: Población, Tasa de Natalidad, Nacimientos, Esperanza de Vida y Defunciones.
+
+Las relaciones que existen entre ellos son:
+
+A más población más nacimientos (positivo)
+
+A más nacimientos más población (positivo)
+A más población más defunciones (positivo)
+A más defunciones menos población (negativo)
+El diagrama de flujos nos puede ayudar a confirmar la viabilidad de las trayectorias que hemos
+visto que son posibles en base al diagrama causal. Así de las dos trayectorias creadas por el
+bucle positivo solo la que ofrece un comportamiento creciente es posible (la A), ya que se trata
+de un bucle en un flujo de entrada. De las dos trayectorias posibles provocadas por el bucle
+negativo solo la decreciente (la D) es posible ya que se trata de un bucle en flujo de salida.
+Los modelos de simulación no han de convertirse en una caja negra en la que el usuario no
+pueda verificar que es lo que está sucediendo. En los casos más sencillos como este podemos
+comprobar lo que el modelo está haciendo utilizando una hoja de cálculo.
+Para ello calcularemos los Nacimientos de un periodo como el producto de la Población inicial
+del periodo por la Tasa de Natalidad, y calcularemos las Defunciones como la Población inicial
+dividida por la Esperanza de Vida. La Población final será igual a la Población inicial más los
+Nacimientos menos las Defunciones.
+El propósito de este ejercicio es ver cómo se instala el software y tener un primer contacto con
+él, que persigue ver la forma en la que se crean los diagramas de flujos en el ordenador, como
+se entran las ecuaciones, como se simula y como se obtienen los resultados.
+
+Links:
+Población y Medio Ambiente
+Biblioteca en Población y salud
+Bases de datos de Población
+Centro de Estudios de Población
+Población y Desarrollo
+Densidad de Población
+
+Ejercicio 5.2. ECOLOGIA DE UNA RESERVA NATURAL
+La Meseta de Kaibab es una superficie extensa y llana en el extremo norte del Gran Cañón de
+1.000.000 acres. En 1907 el Presidente Roosevelt tomó la decisión de crear la Reserva Nacional
+de Caza del Gran Cañón, la cual incluía la Meseta de Kaibab. Se siguió la política de dar una
+recompensa para incentivar la caza de pumas que eran los depredadores naturales del ciervo.
+En un breve plazo se cazaron cerca de 500 pumas. Como resultado del exterminio de pumas y
+de otros enemigos naturales del ciervo, la población de ciervos empezó a crecer muy
+rápidamente. La manada de ciervos se incrementó desde los 5.000 antes de 1907 a unos
+50.000 en unos 15 años.
+Cuando la población de ciervos creció los empleados del Servicio Forestal empezaron a
+advertir de que los ciervos podrían agotar la comida disponible en la meseta. Durante los
+inviernos de 1924 y 1925 murió casi el sesenta por ciento de la población de ciervos de la
+meseta.
+La población de ciervos de la Meseta de Kaibab continuó disminuyendo durante los siguientes
+años, y finalmente se estabilizó en unos 10.000 hacia 1940.
+DISEÑO DE UNA POLÍTICA
+Ahora imagine que usted es un empleado del Servicio Forestal en 1930 y que ha sido
+encargado de la definición de una política para la gestión de la evolución de la población de
+ciervos de la Meseta de Kaibab. Para examinar algunas alternativas que le acerquen al
+problema usted decide crear un modelo.
+Su principal preocupación es el crecimiento y rápido descenso de la población de ciervos
+observada en el período de 1900 a 1930, y su posible evolución futura desde 1930 a 1950. Por
+ello el periodo de análisis de su modelo abarcará desde 1900 a 1950, y el tema principal a
+analizar es la evolución del número de ciervos.
+Una vez que haya creado el modelo correcto podrá utilizarlo para examinar el impacto de
+diferentes alternativas. Trate de conseguir un aumento estable del tamaño de la manada de
+ciervos de la meseta a partir de 1930 que es la fecha de su llegada.
+
+Links:
+Reservas naturales de República Dominicana
+Reservas naturales de Colombia
+Reservas naturales de Argentina
+Parques naturales de Andalucia
+Ejercicio 5.3. EFECTOS DE LA AGRICULTURA INTENSIVA
+
+Uno de los más grandes misterios de la historia de la Humanidad ha sido el repentino colapso
+de una de los principales centros de la civilización Maya en Centroamérica justo en el
+momento en el que aparentemente era un foco de cultura, arquitectura y población, hacia el
+año 800 d.C.
+
+Nadie conoce exactamente porqué esta próspera sociedad de varios millones de personas no
+pudo tomar en su momento las medidas correctoras necesarias para evitar el colapso de su
+cultura. Las recientes investigaciones muestran una gradual tensión entre población y medio
+ambiente que finalmente pudo haber sido crucial en el colapso. El medio ambiente tropical es
+notoriamente frágil. A través del conocimiento de lo que los Mayas hicieron podemos extraer
+conclusiones que nos permitan conservar mejor nuestro entorno. Un conocimiento que puede
+ser especialmente valioso para los países del Tercer Mundo.
+
+Justo antes del cataclismo, las nuevas investigaciones sugieren que la población alcanzaba una
+densidad de 200 a 500 personas por kilómetro cuadrado. Esta densidad de población sugiere
+casi con certeza que poseían avanzados sistemas de agricultura o un comercio a gran escala.
+
+Durante el transcurso de 2 a 4 generaciones Mayas, lo que probablemente abarca menos de
+100 años, la población cayó a lo que había sido 2000 años antes, que era 20 habitantes por
+kilómetro cuadrado o menos, y en ocasiones muy distantes entre sí. Además, después del
+colapso, zonas enteras han permanecido casi deshabitadas durante mil años, prácticamente
+hasta mediados de este siglo.
+
+Algunos cambios ambientales que aún hoy en día son apreciables parecen haber sido los
+desencadenantes de la total pérdida de población. Lagos que eran aparentemente centros de
+encuentro en la época Maya aún no han recuperado el grado de productividad que hicieron de
+sus orillas un buen lugar para vivir hace más de 1000 años.
+
+Estos indicios sobre el pasado han sido hallados durante una investigación de ocho años por
+científicos de la Florida State University y de la University of Chicago. Sus trabajos mostraron
+un crecimiento casi exponencial de la población Maya durante por lo menos 1700 años en las
+tierras bajas tropicales de lo que actualmente es Guatemala.
+
+Las cifras de población se doblaban cada 408 años, de acuerdo con las nuevas estimaciones.
+Esta tendencia puede haber cogido a los Mayas en una trampa sorprendente. Su población
+crecía a un ritmo estable, y durante muchos siglos el crecimiento era demasiado lento para
+que cada generación pudiera apercibirse de lo que estaba ocurriendo.
+
+La creciente presión durante siglos sobre el medio ambiente puede haber llegado a un punto
+imposible de mantener. Incluso es posible que esta presión haya sido imperceptible, hasta que
+se produjo la huida masiva de la población en el final. Los especialistas creen que en otras
+regiones más al Norte, la calidad de vida de las civilizaciones Mayas parece también haberse
+deteriorado aunque sin alcanzar una caída de población tan espectacular.
+
+Las nuevas estimaciones para las tierras llanas del sur se basan principalmente en un estudio
+detallado de los edificios residenciales que fueron construidos, ocupados y abandonados
+durante siglos.
+
+Los estudios se han centrado en una región que posee dos lagos adyacentes, ahora con el
+nombre de Yaxha y Sacnab hacia el norte de Guatemala. La zona se empezó a habitar hace
+unos 3000 años y los primeros enclaves agrícolas aparecen sobre el año 1000 a.C. La tierra fue
+ampliamente deforestada hacia el año 250 d.C.
+La agricultura que fue intensificada gradualmente parece haber ido acumulando sus efectos
+perjudiciales a un entorno originalmente verdoso. A esto hay que añadir el incremento de los
+asentamientos humanos y de otros trabajos de arquitectura de mayor envergadura. Los
+nutrientes esenciales de la tierra fueron arrastrados o se deslizaron hasta ir a parar a los lagos,
+disminuyendo la productividad de las tierras agrícolas.
+
+El incremento en fosfatos en los lagos procedentes de la agricultura y residuos humanos
+muestran que la contaminación pudo haber agravado el daño al entorno. Los científicos han
+confirmado las estimaciones sobre la población en el incremento de los fosfatos que se
+produjo paralelo al incremento de la población. Los autores de la investigación señalan que es
+la primera vez que se puede justificar una correlación entre el incremento de población y el del
+daño al medio ambiente que lleva aparejado el primero.
+
+Links:
+Agricultura intensiva y desastres ecológicos
+Agricultura intensiva y recuperación de suelos fatigados
+Agricultura intensiva y cultivos rotativos
+Agricultura intensiva en el Sureste español
+
+Ejercicio 5.4. LA PESCA DEL CAMARON EN CAMPECHE
+
+En México la pesquería de camarón es la tercera más importante después de la mojarra y el
+ostión en el litoral del Golfo de México. En el litoral Pacífico sólo es superada por el atún y la
+sardina. El valor económico de la producción hace a esta pesquería la más importante del país
+ya que aporta el 40% de los ingresos. Los barcos camaroneros son el 66% de la flota pesquera
+de altura nacional actual, y en 1970 representaban el 82% .
+
+En la Sonda de Campeche, al sur del Golfo de México, la especie más importante era el
+camarón rosado. En los setentas se capturaban más de 20.000 toneladas por año. Pero las
+capturas disminuyeron constantemente desde mediados de esa década y actualmente se
+capturan 4.000 toneladas por año. Los pescadores acusan a PEMEX, la empresa petrolera
+estatal, de causar el colapso al ocupar sus áreas de pesca y contaminar, a pesar de que la pesca
+se hace más al norte y las corrientes marinas concentran la contaminación al sur.
+
+A pesar de que las estimaciones apuntan claramente a la sobreexplotación, entre los
+investigadores ha surgido una polémica interesante. Uno de los mejores investigadores del
+país sugirió que dado que el número de barcos había disminuido la mortalidad por pesca
+también debió de haberlo hecho y , por lo tanto, si la captura no ha aumentado la población si
+lo ha de haber hecho (y tal vez esté escondida en alguna parte). Si la población disminuía debía
+ser por otra causa.
+Apoyaba su argumento con el modelo de Schaeffer (el de Verhulst-Pearl pero aplicándolo a
+biomasa en vez del número de individuos e incluyendo la pesca) asumiendo la pesquería en
+equilibrio (la captura iguala el crecimiento poblacional). En ese modelo si baja la actividad de
+captura, medida en número de barcos, la población aumenta.
+
+Sin embargo, se puede argumentar que los barcos de ahora son más potentes que a mediados
+de los setenta, las redes más grandes, los viajes más largos (60 días ahora contra 15 días
+entonces). La población está más concentrada en unos pocos lugares y es más vulnerable a la
+flota. Ahora existe una flota con la cuarta parte del número máximo histórico de barcos. A
+pesar de eso, el argumento usando el modelo de Schaeffer se sigue esgrimiendo. Más que el
+modelo en si, el problema está en su uso en este caso.
+
+El primer problema está en asumir equilibrio al ajustar el modelo a los datos observados,
+equivale a que la captura observada haya sido igual al crecimiento poblacional. Ese supuesto
+se hacía en los días en que, sin computadoras, el tomarlo simplificaba el proceso de estimar los
+parámetros, que incluía una linearización para hacer una regresión. Actualmente, muchos
+autores aconsejan abandonar ese supuesto y se han propuesto métodos de "no equilibrio"
+(que simplemente aceptan que las capturas puedan ser diferentes del crecimiento
+poblacional). El modelo tiene la forma:
+
+C= f* q* B
+
+B= Biomasa de la población.
+
+r=Tasa de crecimiento de la biomasa
+
+K=Biomasa máxima de la población
+
+C =Captura
+
+f= Esfuerzo pesquero
+
+q= Coeficiente de capturabilidad, la fracción de la biomasa capturada por cada unidad de
+esfuerzo
+
+El segundo problema es que ese modelo no nos dice nada de cómo reacciona la flota a los
+cambios en la captura. Hilborn y Walters (1992) propusieron una modificación que incluye la
+modificación del esfuerzo de acuerdo con la renta (ganancia neta). Cuando la renta es positiva
+nuevos barcos entran a la pesquería, si ésta es negativa los barcos salen de ella, ambas a una
+velocidad determinada por k. Cuando el número de barcos disminuye la población aumenta y
+viceversa. Esto podría causar oscilaciones en la población de camarones, en las capturas y el
+esfuerzo.
+Links:
+Pesca del camarón en el Golfo de California
+Pesca de arrastre del camarón
+En crisis la pesca del camarón
+Instituto Nacional de Pesca
+
+Ejercicio 5.5. CONEJOS Y ZORROS
+
+Este modelo recoge la dinámica de dos poblaciones típicas de presa y depredador.
+Utilizaremos este ejemplo para ver como es posible crear un modelo sin haber dibujado el
+diagrama causal. Para ello podemos partir de un problema del tipo "la población de conejos
+tiene importantes oscilaciones que queremos reducir". Una investigación posterior nos señala
+como causantes de estas oscilaciones a los zorros, y hacemos una lista de los elementos que se
+relacionan con el problema, del tipo:
+
+- población de conejos
+
+- nacimientos de zorros
+
+- población de zorros
+
+- defunciones de zorros
+
+- nacimientos de conejos
+
+- vida media del zorro
+
+- muertes de conejos
+
+- tasa de natalidad del zorro
+
+- vida media del conejo
+
+- necesidades alimenticias del zorro
+
+- tasa de natalidad del conejo
+
+- población sostenible de conejos
+
+Una buena forma de identificar los Niveles de un sistema suele ser hacer una fotografía mental
+del sistema, y asignar la característica de Nivel a aquellos elementos que aparecen en la
+imagen. En este caso tendríamos como Niveles a las poblaciones de Conejos y Zorros. Los
+Flujos son las variaciones temporales de los Niveles, y aquí vamos a considerar los nacimientos
+y defunciones tanto de conejos como de zorros. El resto de elementos son variables auxiliares.
+
+En nuestro caso vamos a diseñar el modelo para que reproduzca una situación estable de las
+poblaciones y después simularemos en una prueba el efecto de un pequeño cambio o
+perturbación en alguna de las variables, en concreto en los nacimientos de conejos. De esta
+forma podremos ver con claridad si la estructura del sistema amortigua, o amplifica esta
+pequeño cambio, o bien si se crean oscilaciones.
+Links:
+El conejo de monte
+Zorros y conejos
+Biología y conservación
+Biología el conejo
+
+Ejercicio 5.6. PROBLEMÁTICA GANADERA
+
+En España periódicamente aparecen en la prensa los ganaderos del porcino, clamando contra
+los bajos precios, y pidiendo ayudas de intervención en el mercado. Cuando los precios se
+recuperan - sin intervención pública - los ganaderos vuelven al anonimato. La evolución del
+número de cerdos sacrificados en matadero presenta ciclos de alta y baja producción.
+Deseamos conocer las causas de estas oscilaciones y que estrategias se deben de seguir para
+conseguir estabilizar el mercado.
+
+En la producción y consumo de embutidos intervienen tres clases de actores: ganaderos,
+tocineros, y consumidores. Los tocineros compran cerdos a los ganaderos y manufacturan los
+cerdos para obtener embutidos, y los venden a los consumidores.
+
+Para comprender mejor los ciclos que aparecen en la producción y consumo de embutidos,
+será de ayuda construir dos modelos: uno enfocado en el proceso de crianza y engorde de
+cerdos en la granja, y el otro en la venta de embutidos. Luego combinaremos ambos modelos
+para obtener uno más global que permita analizar la aparición de comportamientos cíclicos. Es
+más fácil empezar con el modelo de la venta de embutidos, y luego tomar el tema de la crianza
+de cerdos, para finalmente combinar ambos modelos.
+
+El elemento principal en el modelo de la venta de embutidos son las existencias mantenidas
+por los tocineros. Cuando los cerdos son sacrificados en las granjas, los embutidos obtenidos
+son almacenados como existencias en las tocinerías, cuando estos productos son vendidos
+disminuyen las existencias. [Producción - Consumo > Existencias de embutidos] En general la
+cantidad de embutido que el público consume depende del precio. [Precio del embutido >
+Embutido consumido por persona].
+
+Para construir el modelo inicial de la venta de embutidos, se puede presuponer que el número
+de cerdos sacrificados cada mes es una variable exógena y constante: 750.000 de cerdos por
+mes. Los cerdos pesan alrededor de 100 kilos cada uno, y en la elaboración de los embutidos
+se utiliza el 80% del peso total. (Esto significa que cada cerdo produce 0,80*100=80 kilos de
+embutido). Así pues un sacrificio de 750.000 cerdos por mes corresponde a una producción de
+embutido de 60 millones de kilos cada mes. [Sacrificio de cerdos x Peso por cerdo x Ratio útil
+del cerdo > Producción ].
+
+Como media, cada persona normalmente consume sobre 1,5 kilos de embutido cada mes. Si
+consideramos a la población (tamaño del mercado al que se abastece) constante en 40
+millones de personas, el consumo total de embutido cada mes es 1,5*40 millones = 60
+millones de kilos de embutido por mes. Pero cuando el precio es alto en relación al precio
+normal del embutido, las personas consumen algo menos de 1,5 kilos por mes, cuando el
+precio es bajo consumen algo más. [Población x Embutido consumido por persona >
+Consumo].
+
+El precio del embutido depende del precio del cerdo. [Precio del cerdo > Precio del embutido].
+Y el precio del cerdo depende de la oferta y la demanda. Podemos suponer que los tocineros
+tienden a tener almacenados la cantidad correspondientes a medio mes ventas. Cuando el
+stock disminuye, en relación a su situación normal, los tocineros están dispuestos a pagar
+precios más altos en sus compras de cerdos. Cuando el stock está alto, los tocineros tienden a
+reducir sus compras y el precio del cerdo disminuye. [Cobertura > Precio del cerdo].
+
+Consideremos que el precio normal de los cerdos en vivo es de 3 Euros/kilo y que los tocineros
+cargan un margen de 7 euros/kilo en la venta al consumidor, ya que no todo se aprovecha y
+tienen unos importantes costes de transformación y distribución. Así pues cuando el precio del
+cerdo está en su valor normal (3 euros/kilo), el precio del embutido a los consumidores es de
+10 Euros/kilo.
+
+DISEÑO DEL MODELO
+
+1). Dibuje el diagrama de flujos y escriba las ecuaciones del modelo tal y como se describe a
+continuación. En este modelo se acude en varias ocasiones al "valor normal" de un parámetro,
+lo cual simplifica las ecuaciones y relaciones posteriores.
+
+2). Ponga la ecuación del Test igual a 0 y compruebe que el modelo se halla en equilibrio. Esto
+nos asegura que el modelo y la realidad pueden funcionar sin oscilaciones.
+
+3). Una vez haya obtenido un modelo que funcione en equilibrio, pruebe la respuesta del
+modelo ante una alteraciones externas. Por ejemplo, vea como responde el sistema a un
+aumento de los sacrificios con el Test.
+
+Nota: En este ejemplo se ha simplificado en gran manera la realidad. En España actualmente
+los cerdos son engordados durante 5 meses, salvo situaciones muy especiales (tipo
+montanera). Las cerdas para crianza si que se destinan al sacrificio cuando acaba su ciclo
+reproductivo. Se llaman cerdas de desvieje y se utilizan para embutidos porque para carne
+fresca no sirven. Una cerda reproductora muy difícilmente llega a tener de 18 lechones/año.
+Links:
+Ganadería en el sur de México
+Revista Agraria
+Ganadería en zonas áridas
+Agrociencia
+
+Ejercicio 5.7. INGESTION DE TOXICOS
+
+El ser humano ha reconocido el carácter venenoso de determinadas plantas y animales desde
+los primeros estadios de su historia. No obstante, el enorme desarrollo de las actividades
+industriales, en particular las químicas, determinó la creación de una gran cantidad de
+sustancias químicas artificiales, tanto en calidad de materias primas como de residuos de
+determinados procesos, muchas de las cuales presentan efectos adversos para los seres vivos,
+y de ellos, los seres humanos.
+
+El estudio de estas sustancias y sus efectos sobre el hombre ha determinado el surgimiento de
+una ciencia relativamente nueva, la toxicología, que en su desarrollo ha incorporado
+conocimientos de otras ciencias, como la fisiología, la farmacología, la bioquímica y la
+epidemiología. Se desprende de esto que el estudio de la problemática derivada de la
+exposición a sustancias tóxicas requiere del concurso de varias disciplinas y en consecuencia
+de una visión más global que la de cada disciplina en particular. Resulta entonces interesante
+mirar estos problemas desde la óptica de la Dinámica de Sistemas, que integra los distintos
+elementos que los componen en un modelo de análisis y medición que opera
+sistemáticamente y en consecuencia permite observar las mutuas influencias entre los
+mismos.
+
+Cuando un organismo se expone a una sustancia tóxica se desencadenan una serie de
+procesos extremadamente complejos de absorción, distribución, metabolización y eliminación
+(ADME) cuyas velocidades son muy difíciles de calcular.
+
+El esquema más sencillo permite imaginar un organismo que recibe una determinada cantidad
+de tóxico, y a la vez elimina una proporción del mismo. Si la eliminación es muy rápida, es
+probable que el organismo pueda tolerar nuevas cantidades en forma fraccionada. Pero si es
+muy lenta, la exposición durante un periodo largo puede dar lugar a una acumulación que
+alcance e incluso sobrepase el umbral de toxicidad, con todas sus consecuencias, desde
+reacciones alérgicas a la muerte. Sin embargo, la sola peligrosidad de una sustancia no alcanza
+para caracterizar el riesgo de intoxicarse. Se deben considerar todos aquellos factores que
+contribuyen a que el tóxico sea realmente incorporado al organismo, tales como el escenario
+de la exposición, la concentración en el medio contaminado, la vía, frecuencia y duración de la
+exposición y las características del individuo. Por otra parte, el análisis de riesgo es en si mismo
+una herramienta de gestión que permite implementar medidas de mitigación.
+
+En el modelo siguiente, que simula la emisión de un tóxico es estado gaseoso y su inhalación
+por un individuo expuesto se recoge estos aspectos organizados de la siguiente manera:
+
+1) La emisión del tóxico desde una fuente puntual, calculada en moles/hora, para una dada
+Temperatura ambiente expresada en ºK, desde una superficie de evaporación medida en m2 .
+La presión de vapor es la de la sustancia en consideración, a la temperatura del ambiente. El
+régimen de transferencia al ambiente queda caracterizado por un coeficiente de transferencia
+de masa.
+
+2) El escenario está constituido por el recinto donde está contenida la fuente de emisión. Su
+volumen permite calcular la concentración efectiva, que se expresa en mg/m3 al multiplicar la
+emisión en moles/hora por el peso molecular de la sustancia. Esta concentración se compara
+con el límite permitido (en este caso la dosis de referencia para inhalación), y a través de la
+relación entre ambas, se regula la tasa de renovación de aire, como medida de mitigación.
+
+3) Finalmente, el nivel Tóxico acumulado representa la cantidad en el organismo expuesto. En
+el mismo se recibe una cantidad denominada Incorporación, que se mide en mg/hora, que
+está determinada por la variable Concentración, la Tasa de inhalación, que es el volumen
+horario de aire respirado por un individuo sano, y la Exposición efectiva, que permite simular
+una semana laboral con un cierto turno de trabajo (Duración del turno), descanso diarios y
+descansos de fin de semana.
+
+El Tóxico acumulado disminuye por Eliminación, la que responde a una cinética de primer
+orden, es decir, la cantidad acumulada es proporcional a la cantidad presente en función del
+Coeficiente de Eliminación. Como dato adicional se calcula la Concentración interna,
+dividiendo el tóxico acumulado por el peso corporal.
+Ejercicio 5.8. LOS BARAYS DE ANGKOR
+
+La ciudad de Angkor fue la capital del imperio Kmer desde los siglos VIII al XIV. Estaba situada
+donde la actual Camboya, junto al delta del río Mekong y a unos 400 Km al Norte de la actual
+capital Phnom Penh. El nombre de esta ciudad provenía del sánscrito "nagara", que significa:
+Ciudad capital.
+
+El emplazamiento de esta área era de gran importancia para los negocios entre Irán, India,
+China y las provincias mediterráneas del imperio romano. Gracias a sus buenas relaciones
+comerciales rápidamente llegó a ser una ciudad con gran prosperidad económica, cultural y
+tecnológica; y como consecuencia de la gran prosperidad aumentó también la población.
+
+Hasta el siglo IX fue un imperio débil formado por muchos reinos independientes que se llamó
+Andripura, pero a principios del siglo IX el rey Joyavarman II conquistó el área llamada
+Aninditapura y fundó el imperio Kmer. Durante el reinado de Indravarman I, en el año 880, la
+capital se trasladó a Harihalaya a 15 Km del actual Angkor. Su población estaba formada por
+unas 100.000 personas que obtenían 4.400 Tm de arroz al año. En esa época se construyó el
+templo de Preah-Ko, el centro de Bakong con su pirámide de cinco pisos y el primer Baray. Los
+Baray eran piscinas rectangulares de dimensiones variables que servían para acumular el agua
+para el riego del arroz y también regular las inundaciones anuales producidas por los
+monzones.
+
+Este primer Baray tenía unas dimensiones de 3,8 Km. de largo y 1 Km. de ancho y capacidad
+para 10 millones de metros cúbicos. Estas dimensiones proporcionaban agua suficiente para
+regar 40 Km2 de cultivos de arroz. Con su red de canales y alimentado por el río Stung Roluos,
+el imperio Kmer logró multiplicar su capacidad de generar alimentos y riqueza y eran capaces
+de obtener 130 Tm/Km2 al año en 3 cosechas.
+
+En el año 897, Yasovarman I empezó la construcción de un segundo Baray llamado "oriental".
+En medio de él construyó una isla, Loley, y en ella un asharama dedicado a los antepasados del
+Rey. Este Baray era cinco veces mayor que el primero, 7 Km. de largo y 2.5 de ancho, con una
+capacidad de unos 50 millones de m3 de agua que tomaba del río Stung Siem Reap que hizo
+posible que se cultivase hasta 200 Km2 más de terreno. Este rey también trasladó la capital a
+lo que se considera el primer Angkor. Realizó la ciudad capital protegida por una muralla de 4
+Km. por 4 Km.
+
+Finalmente, en el año 1010, Sûryavarman I construyó un tercer Baray llamado "occidenteal",
+mayor que los anteriores, 8 Km. por 2 Km., alimentado por el río Stung Puok y con 57 millones
+de m3 de agua. El área cultivable se incrementó en 100 Km2 más.
+
+Los reyes posteriores reorganizaron los Baray pero sin incrementar su capacidad. Poco a poco,
+a un ritmo del 0,1% anual de su capacidad los Baray dejaron de ser factibles debido al
+incremento de barro y el descenso de su capacidad de almacenamiento de agua. Con este
+modelo estudiaremos el comportamiento evolutivo de los principales parámetros del sistema y
+sus variables.
+Ejercicio 5.9. GESTION DINÁMICA DE LAS EXISTENCIAS
+
+Una empresa presenta una crónica inestabilidad en su producción y en sus existencias de
+productos acabados.
+
+Nos facilitan la siguiente información sobre los estrictos criterios que se siguen:
+
+1. La producción deseada se determina anticipadamente en base a la demanda prevista. La
+producción deseada también se modifica para mantener las existencias a un nivel deseado. La
+producción real coincide con la deseada ya que la empresa dispone de un equipo de
+producción holgado.
+
+2. La empresa realiza las entregas a sus clientes desde un almacén de productos acabados, el
+cual es generalmente capaz de servir los pedidos que recibe.
+
+3. La empresa calcula la demanda prevista promediando los pedidos recibidos en las últimas
+ocho semanas, ya que de esta forma elimina el efecto de pedidos atípicos.
+
+4. Las existencias deseadas de productos acabados han de ser las necesarias para cubrir cuatro
+semanas de pedidos.
+
+5. La empresa tiende a corregir las discrepancias entre las existencias presentes y las deseadas
+en ocho semanas.
+
+Se parte de la hipótesis de una situación inicial en equilibrio entre las existencias deseadas y
+las reales, así como la previsión y pedidos. Como resultado el modelo parte de un equilibrio
+entre producción y pedidos. Tomaremos la hipótesis de que los pedidos son igual a 1000
+unidades/semana hasta la semana 10 en la que se incrementan un 10% y permanecen
+constantes en ese nuevo valor.
+
+1. Sin ayuda del ordenador, dibuje el comportamiento que usted espera que genere el modelo
+cuando se produce un incremento del 10% en los pedidos, partiendo de una situación de
+equilibrio. Especifique el comportamiento de los pedidos, producción deseada, producción,
+existencias y existencias deseadas.
+
+2. Dibuje el Diagrama Causal, el Diagrama de Flujos, y escriba las ecuaciones que describen el
+modelo tal y como se indica en las páginas siguientes.
+3. Compare el comportamiento observado con sus expectativas, explicando las razones del
+comportamiento actual y por qué difiere de sus expectativas.
+
+4. Reduzca el "Tiempo para corregir existencias" a 4 semanas. ¿cambia el comportamiento?
+¿cambia el ritmo del comportamiento? ¿es más o menos estable? explique las causas.
+
+5. ¿Puede este modelo presentar oscilaciones? pruebe con diferentes valores para "Tiempo
+para promediar pedidos" y la "Cobertura deseada de existencias".
+
+SEGUNDA ENTREVISTA
+
+Nada en el modelo actual permite que la producción y las existencias tomen los valores
+observados (oscilaciones). Por ello se hace una segunda entrevista con representantes de la
+empresa, para definir con más detalle la situación.
+
+Las explicaciones siguientes ponen de manifiesto que mientras que la empresa dispone con
+holgura de suficiente equipo en producción, el personal no puede ser contratado y formado
+instantáneamente. De hecho se necesitan 24 semanas de anticipación para seleccionar,
+contratar y formar al nuevo personal. La empresa no tiene costumbre de hacer expedientes de
+regulación temporal de empleo. Los empleados permanecen en la empresa una media de 50
+semanas.
+
+La política de contrataciones de la empresa se basa en reemplazar a los trabajadores que se
+marchan, teniendo en cuenta la situación real de la plantilla en relación con la situación
+deseada. Los empleados deben avisar de su marcha con dos semanas de anticipación aunque
+esto no es significativo. La plantilla deseada se determina en base a la producción deseada y la
+productividad media, la cual es de 20 unidades por empleado y semana, y es constante a lo
+largo del tiempo. La normativa laboral impide realizar horas extras.
+
+ESTUDIO DE UNA ESTRATEGIA
+
+Al objeto de reducir las tensiones de producción que se producen, que son la diferencia
+relativa entre la producción deseada y la producción normal, la empresa quiere conocer si
+debe plantear la posibilidad de realizar jornada flexible (horas extras) en las próximas
+negociaciones con el sindicato.
+
+La jornada de trabajo es de 40 horas. Las negociaciones preliminares con el sindicato indica
+que podrían aceptar una flexibilidad entre 35 horas semanales mínimas y 50 de máxima, a
+cambio de un incremento en las contribuciones de la empresa al fondo de pensiones.
+
+Compruebe el efecto de una jornada flexible en la deseada estabilidad de existencias y
+producción.
+Ejercicio 5.10. EMISIONES DE CO2
+
+Nos piden que hagamos un sencillo modelo de las emisiones de CO2 a la atmósfera, que sea
+genérico y adaptable posteriormente a un período y entorno geográfico determinado. Nos
+piden que nos basemos en la "Identidad de Kaya".
+
+La "Identidad de Kaya" dice que las emisiones de CO2 son igual al Producto Interior Bruto o PIB
+(euro) por la Intensidad de Energía (Kw/euro) y por el Vector Producción de Energía (CO2/Kw).
+
+CO2 (tm) = PIB (euro) x Intensidad de Energia (Kw/euro) x Vector Producción (CO2/Kw)
+
+La Intensidad de Energía es la cantidad de energía demandada por cada unidad de PIB anual.
+Podemos pues calcular la energía total demandada en base al PIB.
+
+El Vector Producción de Energía incluye las emisiones de CO2 por cada Kw de energia
+producido, y la distribución porcentual de las diferentes fuentes de energía: carbón, fuel, gas,
+nuclear y renovables (hidroeléctrica, eólica y otras). Así pues podemos calcular las emisiones
+de CO2 en base a la energía demandada y al Vector de Producción.
+
+Al objeto de fijar algunos parámetros iniciales se nos indica que la emisión de CO2 por Kw
+producido es alta con el carbón, media con el fuel, baja con el gas, y no existen emisiones
+significativas con el resto de fuentes. Por otra parte el Vector de Producción de Energía está
+formado en un 50% por fuel, 30% por nuclear, 10% por gas y el resto a partes iguales entre
+carbón y renovables.
+
+Se nos pide que el modelo permita, además de introducir diferentes escenarios del PIB, la
+posibilidad de introducir posibles mejoras tanto en la eficiencia de la Intensidad Energética
+como en las emisiones de CO2 por unidad de Kw producido de las diferentes fuentes de
+energía. Deseamos crear pues un modelo que recoja todos estos aspectos, y en el que el nivel
+de CO2 en la atmósfera sea constante. Se propone el siguiente esquema:
+
+Emisión = PIB x Intensidad de Energía x Vector Energético
+
+Siendo las unidades de medida respectivas:
+
+CO2 = euro x Kw/ euro x CO2/Kw
+El modelo permite recoger la Identidad de Kaya, para calcular las emisiones de CO2 en base a
+la Energía demandada y al Vector Energético, y también introducir los parámetros genéricos
+que nos indican.
+
+Ejercicio 5.11. COMO PRODUCIR MAS Y MEJOR
+
+El conflicto que existe entre las soluciones a corto y a largo plazo es un conocido patrón de
+comportamiento en muchos sistemas, de forma que aquellas soluciones que son efectivas a
+corto plazo no lo son en el medio plazo y a la inversa. Así en el mundo de la empresa son
+conocidas las limitaciones que tiene una política de mantenimiento preventivo, que si bien es
+vital en un horizonte a medio plazo, ocasionan paradas en la producción a corto plazo que
+nadie quiere asumir.
+
+De igual forma en el ámbito de la calidad el respeto a unas estrictas normas de calidad en la
+empresa son la base para lograr un merecido prestigio entre sus clientes, que se traduzca a
+medio plazo en la fidelidad de los clientes y un mayor margen comercial. No obstante, una
+política estricta en normas de calidad provoca a corto plazo mayores costes al desechar lotes
+de producción que no cumplen las normas.
+
+En el ámbito de la formación de personal un incremento de las horas destinadas a esta
+actividad incrementa la productividad, la calidad y los resultados de la empresa a medio plazo,
+pero a corto plazo implican unos costes y una menor disponibilidad del personal para
+producción.
+
+Dentro de la empresa podemos también observar esta situación en la necesidad de potenciar
+la mejora de los procesos productivos, y con ello aumentar la productividad futura a medio
+plazo, o bien dedicar todos los esfuerzos disponibles a atender las necesidades inmediatas de
+producción. Podemos ver una excelente aproximación a este tema en el trabajo "Nobody Ever
+Gets Credit for Fixing Problems that Never Happened" de Nelson P.Repenning and John D.
+Sterman (2001).
+
+La causa básica de este conflicto entre el corto y el medio plazo se encuentra en el hecho de
+que determinadas acciones proporcionan resultados inmediatos mientras que en otras
+acciones existe un apreciable retraso desde que se ejecutan hasta que se observan los
+resultados de la misma.
+
+Este ejercicio práctico pretende ilustrar esta realidad. También pretende mostrar la utilidad del
+diagrama causal como instrumento para analizar una situación caracterizada por la existencia
+de bucles de realimentación y retrasos.
+
+El grupo de trabajo Columbus 07 pertenece a una empresa dedicada al desarrollo de software
+aerospacial y está formado por informáticos. Cada empleado dispone de gran autonomía en
+relación a la cantidad de horas de trabajo semanales. También dispone de gran libertad para
+distribuir estas horas entre dos tareas básicas: por una parte la producción de programas
+informáticos para atender los proyectos en curso, y por otra parte el análisis de los
+instrumentos informáticos -formación- para mejorar su productividad. Por tratarse de un
+sector de actividad muy dinámico es importante dedicar muchas horas a las mejoras de
+productividad porque existe una rápida obsolescencia.
+
+Semanalmente el empleado recibe información comparativa entre la producción real y la
+producción deseada que desarrolla. En base a la diferencia de producción que se percibe se le
+hace presión para variar la producción. Esta presión se traduce en un ajuste inmediato de las
+horas de trabajo en producción. También se hace presión para mejorar la productividad por
+ser un aspecto clave, y se pretende lograr así dedique más horas a la mejoras de
+productividad.
+
+El diagrama causal formado con los elementos señalados en negrita anteriormente nos
+permite ilustrar esta situación. Podemos identificar dos bucles de realimentación con los
+nombres de "trabajar más" y "trabajar mejor".
+
+Podemos observar que son dos bucles negativos, ya que sólo tienen una relación negativa, y
+en definitiva comparan el estado real de producción con el estado deseado y ajustan el estado
+real mediante dos procesos diferentes: la variación de las horas de trabajo - que permite
+incrementos de producción inmediatos- y la mejora en productividad - que requiere algo más
+de tiempo para mostrar sus efectos-.
+
+La existencia de un retraso en el bucle "trabajar mejor" va a provocar que el bucle de "trabajar
+más" sea el más activo y el que ofrezca resultados con más rapidez. Esta es la causa de que en
+las empresas ante una necesidad de mayor producción se presione más en aumentar las horas
+de trabajo que en aumentar la productividad.
+
+Vamos a transformar el diagrama causal en un diagrama de flujos para poder así trabajar con
+un modelo en el ordenador. Las transformaciones necesarias serán mínimas. Unicamente
+vamos a definir como niveles la Productividad y las Horas de trabajo, sean en producción o
+sean en mejoras de productividad. Consideraremos que éstas últimas varían semanalmente
+según la presión que en cada ámbito se recibe.
+
+Necesitamos ahora disponer de alguna información adicional para crear las ecuaciones del
+modelo. Consideraremos que el empleado dedica usualmente 35 horas semanales a tareas de
+producción y 5 horas a tareas de mejoras de la productividad. La producción deseada es de
+3.500 unidades. La productividad por hora de trabajo es de 100 unidades/semana. Se estima
+en 20 semanas el retraso que existe entre las horas dedicadas a mejorar la productividad y el
+momento en el que éstas se manifiestan.
+
+Con la distribución de horas de trabajo anterior se observa que la productividad se halla
+estable, con pérdidas por obsolescencia y mejoras equilibradas en el equivalente a 5
+líneas/semana. Con estas indicaciones podemos formular las ecuaciones del modelo.
+Tomaremos un horizonte temporal de 100 semanas:
+
+Tomamos como Presión para mejorar la producción las unidades que existen como Diferencia
+dividido por la Productividad inicial, que son 100. La presión para mejorar la productividad ha
+de ser mucho menor, ya que no se esperan resultados inmediatos, y por ello tomamos un
+factor de 5 veces el valor de la productividad.
+
+Con estos parámetros observamos que todos los elementos del sistema y en especial la
+Productividad se mantienen constantes. Es importante disponer de un modelo que represente
+al sistema en equilibrio para así poder apreciar mejor el efecto de cambios en su estructura o
+en las condiciones del mismo.
+
+Podemos observar el siguiente comportamiento, y en resumen, un incremento en la
+producción deseada se traduce en primer lugar en un aumento de las horas de trabajo en
+producción. También se produce una presión para aumentar la productividad, la cual a medida
+que va mejorando permite reducir el número de horas de trabajo en producción.
+
+Este modelo permite explicar la realidad de muchas empresas, donde si bien son necesarios
+esfuerzos de producción ocasionales, las progresivas mejoras de productividad permiten
+retornar a la situación inicial tras un cierto tiempo. Por el contrario en otras ocasiones nos
+encontramos con que la presión para aumentar la producción influye en las horas dedicadas a
+la mejora de la productividad. Esto provoca una progresiva disminución del nivel de
+productividad, lo que es causa de que aún sean necesarias más horas de trabajo para cumplir
+con la producción deseada. Y aparece un bucle perverso donde cada vez los empleados se ven
+obligados a trabajar más mientras que la productividad no deja de descender.
+Además el empleado observa que si dedica menos horas a mejoras de productividad dispone
+de más horas para trabajo en producción, con lo que al disminuir rápidamente la diferencia
+entre la producción real y la deseada recibe menos presiones de todo tipo. Podemos ver
+representado en el diagrama estos dos comportamientos en las flechas más oscuras.
+La dinámica que estas nuevas relaciones generan es especialmente atractiva a corto plazo ya
+que la producción real se ajusta con mucha rapidez a la producción deseada, pero fatal a
+medio plazo porque la obsolescencia de la productividad no es compensada con nuevas
+mejoras. Así podemos observar como la productividad muestra una progresiva disminución
+mientras que en paralelo se produce un incremento de las horas de trabajo dedicadas a
+producción.
+En conclusión podemos observar cómo la tendencia natural del sistema puede ser corregir la
+diferencias entre la producción deseada y la real en base a sucesivos recursos a "trabajar más".
+Esta situación es lógica ya que se consigue el propósito deseado con gran rapidez. No obstante
+si el recurso a "trabajar más" impide el necesario proceso de "trabajar mejor" es inevitable una
+dinámica en la que cada vez son necesarias más horas de trabajo debidas a una pérdida de la
+productividad.
+
+Ejercicio 5.12. AVERIAS
+Deseamos simular los efectos que provocará una disminución número de operarios de
+mantenimiento en el número de piezas defectuosas. Tenemos pues un sistema con dos
+elementos: numero de operarios de mantenimiento y número de piezas defectuosas.
+Supondremos que el número de operarios pasa de 10 a 5 en el mes 6. Definiremos que el
+Numero de piezas defectuosas depende del numero de operarios, de forma que cuando hay
+10 operarios las piezas defectuosas al mes son 0, si hay 8 operarios tendremos 100 piezas, si
+hay 6 tendremos 200 piezas, si hay 4 tendremos 400, si hay 2 tendremos 600 y si hay 0
+tendremos 800 piezas.
+
+Antes de ejecutar el modelo, hacemos una previsión de lo que va a suceder y queremos
+comparar nuestra previsión con el resultado del modelo. Nuestra previsión se introduce en el
+modelo utilizando el icono de Reference Mode (o Comportamiento de Referencia). Podemos
+entrar más de una previsión asignando diferentes nombres a cada una.
+
+Siempre es muy conveniente dibujar el comportamiento que esperamos observar en las
+variables del modelo ya que el resultado del modelo ha de servirnos para validar nuestra
+percepción inicial o bien ha de permitirnos entender en que aspectos nuestra percepción no
+era correcta.
+
+Ejercicio 5.13. GESTIÓN DINÁMICA DE UN PROYECTO
+
+Existen muchas actividades, desde escribir un libro a construir un buque, que presentan unas
+características muy similares. Existe en primer lugar un objetivo y unas previsiones de lo que
+costará conseguir ese objetivo, seguido a continuación de una fase en la que se emplea una
+cantidad de trabajo y recursos, y por último, con mayor o menor éxito se logra el objetivo
+deseado.
+
+No obstante, muchos proyectos acaban, en relación con los objetivos iniciales, durando más de
+lo previsto, costando más de lo esperado y ofreciendo una calidad mucho menor de lo
+deseado.
+
+Vamos a ver a continuación un modelo para ayudar a comprender los aspectos relacionados
+con la consecución de un proyecto. Para hacer el proyecto fácil de explicar, vamos a trabajar
+en un proyecto genérico como diseñar un edificio, aunque el modelo es aplicable a otras
+muchas situaciones, como desarrollar software, diseñar un nuevo producto, etc.
+
+Los modelos pueden utilizarse tanto para investigar proyectos de construcción, donde la
+disponibilidad del material es importante, hasta investigaciones científicas en las que la
+experimentación juega un papel esencial.
+
+En el proceso de conceptualizar y crear el modelo vamos a seguir un procedimiento
+progresivo. Vamos a empezar con la estructura más simple del problema, para irlo mejorando
+en sucesivas versiones del modelo. Esta es una técnica útil ya que nos proporciona etapas en
+las que el modelo nos reproduce bien algunos aspectos de la realidad, a la vez que nos
+muestra aspectos donde debe ser mejorado. Iremos simulando en cada una de las etapas, y
+viendo el efecto de los cambios introducidos en relación con la etapa anterior.
+
+En el proceso de creación del modelo utilizaremos el ordenador para que nos muestre con
+claridad los efectos de los cambios que nosotros estamos haciendo en la estructura del
+modelo. No obstante, aunque el ordenador es muy eficiente en este trabajo, es importante
+que nosotros sepamos interpretar las simulaciones que vayamos a realizar y para ello es
+conveniente que antes de cada simulación tengamos unas expectativas claras de lo que
+esperamos que ocurra, de forma que los resultados del modelo nos sirvan para confirmar o no
+nuestras expectativas.
+
+Modelo 1. Hacer un trabajo
+
+La característica más fundamental de un proyecto es que hay un trabajo que hacer, y que este
+se va realizando progresivamente. Vamos a introducir esto en un modelo.
+Modelo 2. Parar al acabar las tareas.
+
+Es necesario introducir en el modelo un mecanismo que nos detenga el proceso cuando el
+proyecto se acabe.
+
+Modelo 3. Incluir los errores
+
+En todo proyecto se producen errores, trabajos que hay que volver a hacer, y estos deben ser
+incluidos en el modelo. También vamos a modificar la ecuación del Trabajo.
+
+Del modelo 2 al modelo 3 hay un "giro", de forma que dejamos de utilizar la variable "proyecto
+finalizado" para controlar que no se hagan mas tareas de la previstas. La razón es que
+observamos que en realidad en muchos proyectos se hacen muchas mas tareas de las
+inicialmente previstas ya que hay que repetir aquellas tareas que se hicieron mal, o con
+errores. Por lo tanto esta variable no puede ser un limite para la cantidad de trabajo realizado.
+
+Modelo 4. Descubrir los errores
+
+Los errores que se producen en un proyecto no se descubren inmediatamente, sino cuando
+van a hacerse otros trabajos posteriores.
+
+Modelo 5. La presión de la fecha de entrega.
+
+En todo proyecto existe una fecha de finalización y entrega, que va a modificar el ritmo de
+trabajo y la cantidad de los recursos empleados. En esta última versión del modelo ya
+podemos apreciar con claridad los fenómenos que deseamos estudiar en los proyectos como
+son la acumulación de errores en las fases finales del proyecto, o la distribución de las tareas
+del proyecto, que se van incrementando progresivamente a pesar de nuestra programación de
+cargas de trabajo, y que se prolongan incluso más allá de la fecha de entrega del proyecto.
+
+Con frecuencia lograr que el modelo se halle correcto desde el punto de vista de las unidades
+obliga a añadir un gran número de variables auxiliares, que en general solo añaden una
+complejidad innecesaria al modelo. La persona que construye el modelo debe de valorar la
+conveniencia de añadir o no todas las variables auxiliares necesarias para tener un modelo
+correcto desde el punto de vista de las unidades.
+
+Una vez que tenemos el modelo correcto podemos emplearlo para realizar diferentes análisis
+de sensibilidad a variaciones de diferentes parámetros del modelo, como por ejemplo:
+
+a) Un aumento de la Calidad hasta 0.95
+
+b) Disponer de una fuerza de trabajo disponible de 100 o de 150 tareas/mes.
+
+c) Un menor retraso en la detección de los errores, modificando la tabla.
+
+d) Un cambio en la Duración prevista de 10 a 12 meses.
+Ejercicio 5.14. UN MODELO DE EMPRESA INNOVADORA
+
+El gerente de una empresa recién creada, buen amigo nuestro, nos llama para solicitarnos
+consejo pues acaban de nombrarle para ese importante puesto. Su aspecto no parece
+precisamente alegre.
+
+Según nos explica se trata de una pequeña empresa que es el cuarto intento de una gran
+empresa farmacéutica por introducirse en el campo de los productos elaborados con ayuda de
+la biotecnología. Las anteriores intentos fueron empresas fallidas que siguieron un camino
+muy similar: después de obtener algunos éxitos científicos que se plasmaron en nuevas líneas
+de productos, y de conseguir poner en marcha la fabricación de sus productos, la casa matriz
+las tuvo que cerrar debido a las fuertes perdidas que periódicamente presentaban. Nuestro
+amigo no desea que tal cosa vuelva a suceder.
+
+Para su disgusto ya le han asignado a cuatro directores de Area: Investigación, Comercial,
+Producción y Finanzas, con los que nos pide que nos entrevistemos. Considera que la amplia
+experiencia de estas personas en las anteriores empresas podrá sernos de utilidad.
+
+Tras las cuatro entrevistas, extensas y sinceras, repasamos las notas, un tanto desordenadas,
+que hemos podido tomar:
+
+Sr. Director del Area de Investigación
+
+* La empresa actúa en un entono muy dinámico, con un nivel científico que aproximadamente
+se duplica cada cinco años. (01)
+
+* Dispone de un equipo científico reducido pero que considera buen conocedor de los campos
+de investigación que tiene en expectativa. Considera posible avanzar científicamente un 25%
+más rápido de como lo hace su entorno. (19)
+
+* El nivel científico de la propia empresa en su primer campo de investigación previsto supera
+en un 20% al nivel científico del entorno, y este margen científico se irá ampliando cuando
+ponga a trabajar el equipo de investigación. (13)(23)
+
+* Tiene previsto obtener una nueva línea de productos cada 24 meses, para ello escogerá
+campos de dificultad científica acorde con los recursos de investigación disponibles. Su
+previsión es obtener la primera línea en 12 meses. (14)(20)(26)
+* La empresa lanza nuevos productos cuando finaliza la investigación de una línea de
+productos. Se suelen lanzar unos 10 productos por cada línea de productos. Las características
+de estos productos permanecen constantes hasta la aparición de una nueva línea de
+productos, hecho que se aprovecha para actualizar tecnológicamente todos los productos
+anteriores. (28)(29)
+
+* Si pudiésemos medir la calidad de los productos, esta sería igual al valor del nivel científico
+propio de la empresa en el momento de lanzar una nueva línea de productos, permaneciendo
+constante hasta la aparición de una nueva línea de productos, en cuyo momento se actualiza
+con el nuevo valor del nivel científico de la empresa. (03)(15)
+
+Sr. Director del Area Comercial
+
+* Los productos de la empresa se dirigen a un mercado profesional y muy competitivo, donde
+los precios han de reflejar el margen de calidad que el producto posee en cada momento. (27)
+
+* Los productos de la empresa poseen un margen de calidad que es la diferencia entre la
+calidad de los productos y el nivel científico del entorno. (21)
+
+* Su objetivo es operar un mercado local para poseer alguna ventaja adicional sobre sus
+competidores. Los clientes se suelen captar con gran rapidez tras la aparición de una nueva
+línea de productos y su consumo es de 1 producto al mes. (24)(25). Cada nueva línea de
+productos permite captar 100 nuevos clientes. (06)(07)
+
+Sr. Director del Area de Producción
+
+* El Area de Producción no presenta una problemática compleja. Se produce en función de los
+pedidos que se reciben si la capacidad de producción instalada lo permite, y rápidamente se
+entrega, ya que por las características de los productos los pedidos no servidos
+inmediatamente son cancelados. (11)
+
+* La capacidad de producción es de 100 unidades de producto al mes, y se decide en función
+del número de productos que la empresa desea producir ya que las especiales características
+de los productos requieren maquinaria específica para cada uno. (04) (05)
+
+Sr. Director del Area Financiera
+
+* Ingresos: La empresa factura y cobra prácticamente al contado, que es la práctica usual en el
+sector. La facturación es el resultado de las entregas realizadas, que es igual a los pedidos
+recibidos, y el precio vigente. (16)
+
+* Costes: La empresa tiene unos costes prácticamente fijos procedentes de su estructura
+administrativa y de investigación, unos 10 millones mensuales, y otros variables, materias
+primas y personal, que prácticamente son el 50% de la facturación. (08)(09)(10)
+
+* Beneficio: Se asume que la empresa presentará perdidas hasta la obtención de la primera
+línea de productos, pero la casa matriz desea que a partir de ese momento la empresa sea
+autosuficiente financieramente. (02)
+
+Al despedirnos del flamante nuevo Gerente acordamos vernos la semana próxima para
+exponerle las estrategias básicas que consideramos debe seguir en su nueva empresa.
+
+EJERCICIO: ANALISIS DE LA PROBLEMATICA ACTUAL
+Construya un modelo que reproduzca la esencia de las anteriores notas, y cuando estudie su
+comportamiento preste atención especial a estos aspectos esenciales:
+
+1. La evolución de la facturación, y en consecuencia del beneficio, viene determinada por la
+evolución del precio de los productos.
+
+2. El precio de los productos es máximo en el lanzamiento de una nueva línea de productos, ya
+que los productos disponen de una calidad ampliamente superior a lo que la competencia, el
+entorno, puede ofrecer.
+
+3. Los precios tienen una tendencia a la baja, ya que después de su lanzamiento, van
+apareciendo productos similares de la competencia que harán que la empresa deba disminuir
+sus precios si quiere mantener a sus clientes.
+
+DISEÑO DE UNA ESTRATEGIA ESTABILIZADORA
+
+Si deseamos obtener una cierta estabilidad en el beneficio de esta empresa, una posible
+estrategia pasa por bloquear el proceso de disminución de los precios como consecuencia de
+la presión de los competidores con productos similares. Diseñe una forma de conseguirlo.
+
+Deberá ser el propio Gerente quien en cada caso, en base a las características específicas de
+los productos y los clientes, diseñe las políticas comerciales que le permitan conseguir
+mantener los precios. Estas políticas no podrán basarse en las prestaciones tecnológicas de los
+productos, inalterables hasta la obtención de una nueva línea de productos, sino en las
+restantes prestaciones no tecnológicas, como presentación, garantías, servicio post-venta, etc.
+
+DISEÑO DE UNA ESTRATEGIA EXPANSIVA
+
+Como complemento a la anterior estrategia podemos intentar hallar alguna forma de paliar las
+discontinuidades en la facturación y el beneficio que se producen por la aparición intermitente
+de nuevas líneas de productos.
+
+Una posible estrategia se basa en salir del mercado local en búsqueda de nuevos clientes de
+una forma agresiva, al objeto de conseguir una mayor estabilidad en el crecimiento de la
+facturación. Para ello será necesario abordar progresivamente nuevos mercados tras la
+obtención de cada nueva línea de productos, al objeto de conseguir también una progresiva
+captación de nuevos clientes. Diseñe una estrategia para conseguirlo.
+Ejercicio 5.15. CONTROL DE CALIDAD
+
+La empresa ECOCHIP es una empresa de tamaño mediano dedicada a la fabricación de
+circuitos integrados. Los circuitos integrados son pequeños componentes electrónicos de
+materiales semiconductores que tienen las mismas prestaciones que circuitos electrónicos
+completos (amplificadores, osciladores, etc.). Debido a lo delicado del proceso productivo
+empleado, únicamente del 30 al 50% de la producción es utilizable. Por ello, todas las unidades
+producidas deben ser controladas antes de ser vendidas.
+
+Existe preocupación en la empresa por las repercusiones de la calidad de los productos en la
+imagen de la empresa. ECOCHIP ha observado que en ocasiones sus compradores devuelven
+muchas unidades defectuosas, mientras que en otras épocas se producen muy pocas
+devoluciones.
+
+Los gestores de ECOCHIP se hallan muy sensibilizados por esta situación, y cuando perciben un
+incremento de reclamaciones y devoluciones contratan a más personal para el control final
+para así aumentar la minuciosidad de este proceso. La cuantía de estas nuevas contrataciones
+se halla condicionada por el número de controladores existente y la frecuencia de las
+reclamaciones recibidas (06).
+
+Las grandes dificultades del proceso de control final requiere algunos meses de formación,
+aunque algunos controladores aprenden con más rapidez que otros. Los controladores en
+formación no verifican circuitos integrados para la venta, ya que en ECOCHIP no desean correr
+el riesgo de que controladores inexpertos puedan dejar pasar unidades defectuosas. Los
+nuevos empleados que reciben formación como controladores son directamente instruidos
+por controladores expertos. Un controlador experimentado asignado en tareas de formación
+de un nuevo empleado debe dedicar la mitad de su tiempo a esta tarea (08), y el resto de
+tiempo realiza los usuales controles de productos acabados.
+
+ECOCHIP no tiene ninguna política específica para reducir el número de controladores, pero
+deja que la natural dinámica de este personal corrija los excesos que se puedan producir (02).
+Actualmente, la fuerte demanda obliga a los controladores a seguir en su trabajo el mismo
+ritmo de la producción. Por ello, el tiempo dedicado a la comprobación final de un circuito
+integrado depende del volumen de producción (10).
+
+Los clientes parecen percibir fluctuaciones en la calidad de los productos que la empresa
+ECOCHIP les suministra. Así, durante algunos períodos los clientes devuelven muchas unidades
+defectuosas, mientras que en otros períodos se reciben muy pocas devoluciones.
+
+Lo anterior implica que un buen modelo debe mostrar una tendencia hacia la fluctuación en la
+calidad de los productos de la empresa ECOCHIP. Cuando el número de controles a realizar por
+empleado aumentan debido al incremento en las ventas, la calidad final disminuye.
+Transcurrido un tiempo se contrata a nuevos controladores. Este incremento de controladores
+inicialmente reduce el número de controladores efectivos, hasta que los nuevos controladores
+están suficientemente capacitados y pueden ayudar en el control. Las nuevas tareas de
+formación reducen aún más la calidad observada. Sin embargo, cuando el período de
+formación finaliza, la cantidad de controles a realizar por empleado disminuye y la calidad
+observada aumenta.
+
+En base a esta información:
+
+1. Estudie la situación descrita y realice un conciso resumen del problema y del
+comportamiento que el modelo debe explicar. Identifique las políticas de gestión que, en su
+opinión, pueden causar este comportamiento.
+
+2. Desarrolle un breve diagrama causal basado en su análisis.
+
+3. Construya el correspondiente diagrama de flujos y compárelo con el que encontrará a
+continuación. En el Diagrama se han dibujado las variables que van a incorporar tablas internas
+subrayando el nombre de la variable, y se han señalado los retrasos en las flechas.
+
+4. Escriba las ecuaciones según encontrará más adelante. Tome nota en especial en este caso
+practico del uso de Tablas Internas, Retrasos, Funciones, y de un elemento de Test para probar
+diferentes escenarios. El test está activado si el tiempo de la función Step es inferior al
+horizonte de simulación.
+
+5. Ejecute su modelo en el ordenador. Compare el comportamiento obtenido con el esperado
+en base a su análisis.
+
+6. Experimente con cambios estructurales o de los parámetros empleados que puedan aliviar
+el problema. Defina que modificaciones en las políticas de gestión empleadas pueden ofrecer
+una calidad de los productos más estable. Deseamos minimizar las fluctuaciones de calidad
+para mantener el volumen de pedidos.
+Ejercicio 5.16. IMPACTO DE LOS PLANES DE NEGOCIO
+
+Los planes de negocio (Business Plan) tienen como finalidad facilitar el logro de los objetivos y
+metas más importantes de una empresa, organización o corporación: ello adquiere especial
+importancia en un mundo turbulento, incierto y competitivo. La utilización de un plan de
+negocio puede minimizar los riegos de todos los niveles en la gestión empresarial de las
+empresas, en especial en las de nueva creación, ya que en estos casos el 90% de ellas no
+consigue superar los tres años de existencia. Es importante pues conseguir determinar los
+factores endógenos que pueden afectar el crecimiento de las empresas.
+
+Todo plan de negocios tiene como objetivo la obtención de beneficios tanto sean sociales,
+ambientales o puramente económicos, y en todos ellos se plantea como mínimo el objetivo de
+lograr un razonable retorno de la inversión (ROI) ya sea a nivel empresarial o institucional para
+poder volver a generar recursos de nueva utilización.
+
+En el mundo económico y en especial en las pequeñas y medianas empresas (PYMES) el
+detallado cálculo del ROI permite minimizar el riesgo de fracaso, en especial en las de nueva
+creación, durante los tres primeros años de existencia.
+
+Los planes de negocio son la prospección interactiva que hacemos de los futuros escenarios
+posibles, externos e internos, para tratar de diseñar por anticipado conjuntos de acciones que
+posiblemente nos conduzcan a alcanzar los objetivos.
+
+El plan de negocio no convertirá ideas malas en buenos negocios, pero permitirá darse cuenta
+a tiempo, y evitar contratiempos mayores. Las buenas ideas convertidas en buenos planes de
+negocios generan mejores negocios, y serán la base para iniciar un replanteamiento
+estratégico más ambicioso cuando las circunstancias lo requieran.
+
+La determinación de las mínimas variables de carácter cualitativo, como entorno, coyuntura,
+mercado y las de carácter cuantitativo como: capital, ingresos o ventas que son necesarios
+para la formulación de planes de negocio, pueden permitir a las pequeñas empresas valorar
+inicialmente su viabilidad económica a nivel de retorno de la inversión (ROI) durante los
+primeros años, y así asegurar su implementación.
+En todo este marco nos encontramos muchas veces de forma muy relevante con el conflicto
+de intereses y opiniones entre gerentes y propietarios, que darán lugar a la creación del
+modelo que se expone a continuación.
+
+Ejercicio 5.17. LLENANDO UN VASO
+Todos tenemos en nuestra casa un mecanismo automático que llena el depósito de agua del
+baño cuando nosotros lo vaciamos. Este mecanismo no necesita nuestra intervención para
+cumplir su cometido. Existe una boya que actúa como medidor del nivel de agua, y un
+mecanismo regula de forma autónoma el caudal de agua que entra para que se llene el
+depósito y una vez lleno se detenga el flujo de agua. Todo este proceso funciona
+correctamente si se cumple una condición: que exista gravedad.
+Ahora a analizar un tema similar ya que vamos a hacer un modelo de simulación en el que una
+persona llena un vaso de agua. Supondremos que se cumple una condición: que la persona
+actúe con lógica.
+Para hacer el modelo vamos a hacer un Diagrama Causal. Sabemos que:
+- a más entrada de agua, mayor será el nivel de agua en el vaso.
+- a mayor nivel de agua en el vaso, menor será el volumen vacío.
+- a mayor volumen vacío, mayor será la entrada de agua.
+Para hacer el Diagrama de Flujos, vamos a:
+- hacer una foto mental al sistema. Lo que sale en la foto es un Nivel.
+- definir como Flujos los elementos que hacen variar el Nivel.
+- el resto de elementos del sistema son Variables Auxiliares.
+Ejercicio 5.18. ESTUDIO DE UNA CATASTROFE
+
+La Tierra de los Bosques es una región próspera situada en una región templada con
+abundante vegetación. Sus habitantes llevan una existencia feliz y placentera. En total son
+1.000.000 de personas y esta cifra se ha mantenido estable en los últimos años. Actualmente
+el 40% son jóvenes de menos de 20 años. Un 50% de la población es adulta, entre 20 y 70
+años, y los otros son ancianos.
+
+Por otra parte sabemos que sus parámetros poblaciones son los siguientes: su esperanza de
+vida es de 80 años, que la tasa de natalidad de la población adulta es del 6% anual, y que las
+tasas de mortalidad son el 2,5% para los jóvenes y del 2% para los adultos. Todos estos
+parámetros se han mantenido estables y no se espera que tengan modificaciones en el futuro.
+
+Una noche desgraciada del verano del año 2005 se desata un terrible incendio, y durante una
+larga semana el fuego avanza sin control arrasando todo a su paso. Los servicios de
+emergencia consiguen poner a salvo a todos los jóvenes y los ancianos, pero cuando cesa el
+incendio descubren que el total de víctimas es de 100.000 personas siendo todas ellas adultas.
+
+Se desea hacer una estimación de cual será la evolución del número de personas totales de la
+Tierra de los Bosques tras la catástrofe, sabiendo que los parámetros poblacionales (esperanza
+de vida, tasa de natalidad y tasas de mortalidad) van a permanecer constantes. Más
+concretamente se nos pide determinar el número de años que tardará la población en
+recuperar el valor de 1.000.000 de personas.
+
+Para hacer este estudio vamos a hacer un sencillo modelo de simulación, de forma que se
+situaremos su fecha de inicio en el año 2000, y el horizonte temporal alcance 50 años.
+
+Vamos a construir una primera versión del modelo en un escenario de población estable, del
+2000 al 2050 recogiendo los parámetros que nos han facilitado. Después en una segunda
+versión introduciremos la muerte de 100.000 adultos en el año 2005 y evaluaremos su impacto
+hasta el año 2050.
+
+Este modelo permite reproducir una situación estable. A continuación se modificará para
+simular la catástrofe. El primer efecto será sin duda una reducción de la población desde
+1.000.000 a 900.000 personas, y queda por determinar la evolución futura. Sin duda la
+intuición del lector ya le indica cual va a ser ésta. Antes de seguir debería anotar el número de
+años aproximado que cree que tardará la población en volver a su cifra inicial de 1.000.000
+personas.
+
+Para simular los efectos de la catástrofe en el 2005 con un coste de 100.000 personas adultas,
+se crea un nuevo flujo de salida del nivel de adultos, y se utiliza la función PULSE, indicando
+que será en el periodo 2005 y tendrá una duración de 1 periodo.
+
+Antes de simular podemos preguntarnos por el escenario que intuimos al cabo de 20 años, es
+decir:
+
+a) la población permanecerá estable en 1.000.000 - 100.000 = 900.000
+
+b) la población recuperará su valor inicial al cabo de pocos años
+
+c) la población recuperará su valor inicial al cabo de muchos años.
+
+Es importante antes de ejecutar un modelo permitir que nuestra intuición nos indique la
+evolución que esperamos observar en el modelo, ya que esto nos permite que cuando
+obtenemos los resultados estos confirmen nuestra intuición y por lo tanto tengamos una cierta
+base para en futuros estudios apoyarnos en ella, o bien los resultados contradigan nuestra
+intuición. En este último caso, si no hay ningún error en el modelo (cosa que deberemos
+verificar), es conveniente una reflexión que nos ayude a reconsiderar los supuestos en los que
+hemos basado nuestra intuición.
+El modelo nos muestra con claridad una evolución del número total de personas que no
+coincide con nuestras expectativas ya que ni la población se mantiene en la cifra de 900.000
+personas ni se recupera la cifra del total de la población en el amplio horizonte que hemos
+tomado, sino que se estabiliza en un valor claramente inferior a las 900.000 personas.
+Podemos hacer un seguimiento de lo que sucede en los diversos colectivos a través de las
+gráficas que nos muestran la evolución de una variable y de aquellas que la influyen.
+
+Ejercicio 5.19. EL JOVEN AMBICIOSO
+Un joven ambicioso de 20 años, al finalizar sus estudios básicos, nos comenta que ha oído a su
+padre mil veces decir que se ha "matado trabajando desde que era un chaval", y esto, visto las
+úlceras y problemas de corazón que tiene, debe ser algo más que una frase hecha. Tiene claro
+que no quiere acabar así.
+De nuestra conversación con él, sacamos los siguientes apuntes, un poco desordenados:
+Sus ingresos deseados son de 5.000 euros al año.
+Horas de trabajo: supone puede encontrar trabajo, ya que le sobra salud y ganas de trabajar.
+Salario por hora: sólo con estudios básicos calcula unas 5 euros/hora.
+Ingresos reales: son función del salario y las horas trabajadas.
+Necesita algunas horas de descanso,-cuando se ha fatigado como todos, para él descanso es
+todo: dormir, comer, leer, etc.
+Salud: no tiene ningún problema.
+Fatiga: aunque es joven no es una máquina, será función de las horas que trabaje.
+Gastos: de momento seguirá viviendo con sus padres ( gastos = 0 )
+Teniendo en cuenta sus ingresos deseados ( 5.000 euros) y el salario por hora (5 euros/hora),
+calculamos que debería trabajar 1.000 horas al año (4 al día).
+Vista la experiencia de su padre, sabe que si llegase a trabajar 12 horas al día como hace él, su
+salud se resentiría.
+Espera casarse y tener hijos a los 35, entonces necesitará mayores ingresos, tal vez unos
+20.000 euros al año.
+Nuestro amigo, antes de tomar la decisión sobre el camino que desea seguir en la vida, y sólo
+para poner en orden sus ideas, nos pide que le hagamos un sencillo modelo que le ayude a
+planificar mejor su futuro.
+Comentarios:
+El modelo debe de abarcar toda la vida laboral (de 20 a 65 años).
+Hay dos aspectos que le preocupan especialmente al joven: la salud y los ingresos.
+Necesita que le planteemos alguna alternativa, no que le adivinemos su futuro.
+Se pueden incorporar al modelo los elementos que creamos necesarios para plantear
+alternativas.
+Estructuramos toda la información recibida en el siguiente diagrama causal, que tiene dos
+zonas: la económica y la relativa a la salud.
+La traducción del Diagrama Causal al Diagrama de Flujos es necesaria para poder trabajar en el
+ordenador y no es un proceso automático, sino que con mucha frecuencia requiere crear
+nuevos elementos como Flujos. Una posible solución es la que se indica. Se han definido en el
+Diagrama de Flujos las Horas de Trabajo como un Nivel por necesidades del modelo, pero
+también seria posible otro modelo con una estructura diferente.
+
+Ejercicio 5.20. DESARROLLO DE UNA EPIDEMIA
+Supongamos una población inicialmente sana, en la cuál aparece un cierto número de
+infectados por una enfermedad contagiosa. Un individuo podrá transmitir o infectarse de la
+enfermedad de otros individuos. La transmisión de la enfermedad se produce debido a la
+proximidad física. Durante el proceso infeccioso, los individuos pueden pasar por todos o
+algunos de los siguientes estados:
+
+Susceptibles (S), estado en el cual el individuo puede ser contagiado por otra persona que esté
+infectada;
+
+Infectado (I),estado durante el cual el individuo se halla infectado y puede además infectar a
+otros;
+
+Recuperado (R), o curado, estado durante el cuál el individuo no puede ni ser infectado por
+haber adquirido inmunidad (temporal o permanente) ni infectar (por haber recuperado o
+haber pasado la etapa contagiosa de la enfermedad).
+
+Entre las enfermedades infectocontagiosas encontramos dos grupos principales:
+
+Las que confieren inmunidad al infectado (temporal o permanente) una vez recuperado, la
+mayoría de origen viral (sarampión, varicela, poliomielitis); y
+
+Las que, una vez recuperado, el individuo vuelve a ser susceptible inmediatamente, entre las
+que encontramos las causadas por agentes bacterianos (enfermedades venéreas, peste,
+algunas meningitis) o protozoos (malaria).
+
+Teniendo en cuenta los distintos estadios relacionados con un proceso infeccioso, los modelos
+epidemiológicos se dividen en tres grandes grupos:
+
+SIR: El modelo susceptible-infectado-recuperado, relacionado con las enfermedades que
+confieren inmunidad permanente y un ciclo típico incluye los tres estados. Esto no quiere decir
+que todos los individuos de una población deban pasar por estos, algunos no serán infectados
+y permanecerán sanos, o sea siempre en estado S, otros serán inmunizados artificialmente por
+vacunación, o algún otro método y pasarán a ser R sin haber estado infectados.
+
+SIRS: El modelo susceptible-infectado-recuperado-susceptible, idéntico al anterior, pero
+aplicable a casos en que la inmunidad no es permanente y el individuo vuelve a ser susceptible
+después de un cierto periodo, tal como la gripe.
+
+SIS: El modelo susceptible-infectado-susceptible; se usan en casos en que la enfermedad no
+confiere inmunidad y el individuo pasa de estar infectado a susceptible nuevamente, saltando
+la etapa R.
+
+Un modelo puede tener en cuenta la dinámica vital de la población (nacimientos, muertes,
+movimientos migratorios) dependiendo del horizonte temporal analizado, y de las
+características de la enfermedad y de la población estudiada.
+Ejercicio 5.21. DINÁMICA DE LOS DOS RELOJES
+
+Un soldado se detenía cada día a las 8 de la mañana en una joyería y ajustaba su reloj
+comparando con el cronómetro situado en uno de los escaparates. Un día el soldado entró en
+la tienda y felicitó al dueño por la exactitud del cronómetro.
+
+- "¿Está usted de acuerdo con las señales de la hora de Westminster?", preguntó el soldado.
+
+- "No", contestó el dueño de la joyería, "lo ajusto según el disparo del cañón a las 5 en el
+castillo, dígame, soldado, ¿porqué se detiene todos los días y comprueba la hora de su reloj?.
+
+El soldado contestó, "yo soy quien dispara el cañón".
+
+Sabiendo que el cronómetro del joyero se retrasa 1 minuto cada 24 horas, y el reloj del
+soldado se atrasa 1 minuto cada 8 horas, ¿Cuál es el error total en la hora del cañón en el
+castillo después de 15 días?.
+
+Ejercicio 5.22. EL EFECTO MARIPOSA
+
+En el proceso de creación de un modelo de simulación es frecuente encontrar que los
+elementos del sistema se comportan de manera sorprendente e incluso totalmente
+inesperada. También puede ocurrir que los cambios que efectuamos en las condiciones
+iniciales produzcan efectos contrarios o muy distintos a los previstos, y aún más, que pequeños
+cambios en los valores iniciales generen grandes diferencias en el comportamiento de los
+elementos del sistema.
+
+Quizás sin saberlo hemos creado un modelo de simulación con una estructura y una forma de
+relación entre variables tal que, bajo determinadas condiciones, presenta una forma de
+comportamiento que se conoce como caos. Una definición del caos establece que es "un
+comportamiento aperiódico en un sistema determinista que muestra gran sensibilidad
+respecto a las condiciones iniciales".
+
+No es necesario que el modelo de simulación tenga un aspecto extremadamente complejo,
+con muchas variables, parámetros y retroalimentaciones. Los numerosos estudios realizados
+respecto al tema establecen que con tres ecuaciones diferenciales y una no-linealidad en
+alguna de ellas tenemos las condiciones necesarias para que el sistema presente bajo ciertas
+condiciones un comportamiento caótico.
+
+En las últimas décadas del siglo XX la Teoría del Caos ha despertado considerable interés, ya
+que muestra la realidad interconectada que nos rodea y llena de bucles de retroalimentación,
+donde cada elemento integrante actúa para modificar el comportamiento del medio que la
+rodea, pero no lo hace en forma independiente sino obedeciendo a un comportamiento
+integrado del conjunto. Esta teoría es particularmente útil para abordar el estudio de los
+fenómenos sociales, siempre complejos y difíciles de resolver en términos de relaciones
+lineales causa-efecto.
+
+Afortunadamente hay ejemplos de fenómenos físicos o de sistemas puramente matemáticos
+que facilitan la comprensión de los comportamientos caóticos antes de pasar a situaciones
+mucho más difíciles de modelar, como son los fenómenos sociales. Entre ellos, el péndulo
+forzado como fenómeno físico o una ecuación diferencial de tercer orden como modelo
+matemático. Tenemos otro ejemplo aún más conocido por sus repercusiones
+cinematográficas, originado en el trabajo del meteorólogo Edward Lorenz, quien hace más de
+cuarenta años construyó un sistema de tres ecuaciones diferenciales con el objeto de modelar
+de manera sencilla el comportamiento meteorológico, con el cual logró una respuesta tan
+sorprendente como llamativa y que se conoce popularmente como el "Efecto mariposa".
+
+En la década de 1960 el meteorólogo Edward Lorenz inició una serie de investigaciones
+orientadas a resolver el problema de la predicción meteorológica. Trabajando sobre una
+atmósfera bidimensional rectangular, cuya zona inferior está a una temperatura mayor que la
+zona superior, y partiendo de las ecuaciones de continuidad, cantidad de movimiento y
+balance térmico, desarrolló un sistema simplificado formado por tres ecuaciones diferenciales.
+
+Es importante observar que se trata de tres ecuaciones diferenciales que presentan dos no
+linealidades. Por ello este sistema reúne las condiciones para que aparezcan comportamientos
+caóticos en sus variables de estado (las "variables de estado" se denominan Niveles en
+Dinámica de Sistemas).
+
+Podemos representar estas ecuaciones con un modelo de simulación dinámica. No obstante es
+necesario tener en cuenta que las ecuaciones precedentes resultan de un proceso usual en el
+análisis de fenómenos físicos y químicos, consistente en la adimensionalización de las
+variables. Consecuencia de este proceso es la aparición de agrupaciones de parámetros (por
+ejemplo densidad, viscosidad, longitudes características) conocidas como números
+adimensionales, que en definitiva establecen relaciones entre las fuerzas impulsoras del
+cambio en el sistema en estudio, o sea de su dinámica.
+
+El modelo creado está formado de tres Niveles, denominados Flujo Convectivo, Diferencia de
+Temperatura Horizontal y Diferencia de Temperatura Vertical, que dependen de sus
+respectivos Flujos, que son: Variación del flujo convectivo, Variación de temperatura horizontal
+y Variación de temperatura vertical. Por otra parte, existen tres parámetros adimensionales: el
+Número de Prandtl, que establece una relación entre la viscosidad y la conductividad térmica
+del fluido, el Número de Rayleigh, que cuantifica la transmisión de calor en una capa de fluido
+con producción interna de calor por radiación, y la Altura, que representa el espesor de la capa
+en estudio.
+
+En esencia, el modelo establece la relación entre el flujo convectivo y las variaciones de
+temperatura en la masa de aire, la cual es de por sí compleja dado que una diferencia de
+temperatura produce un flujo convectivo, pero a su vez este flujo modifica la diferencia de
+temperatura, todo ello condicionado a las propiedades del medio estudiado, tales como
+viscosidad, densidad, o conductividad térmica, las cuales se encuentran agrupadas en los
+números adimensionales que aparecen como parámetros del modelo.
+
+Podemos construir un gráfico XY que nos compare la evolución conjunta de dos variables, por
+ejemplo el gráfico del Flujo Convectivo (en el eje X) en relación a la Diferencia de Temperatura
+Vertical (en el eje Y). Para hacerlo acudimos al menú de la barra superior: Windows - Control
+Panel - New y seleccionamos las variables tal y como se indica en la siguiente figura:
+
+En rigor, lo que estamos haciendo es graficando el espacio de fases. El espacio de fases es el
+espacio matemático formado por las variables que describen un sistema dinámico. Cada punto
+del espacio de fases representa un posible estado del sistema. La evolución en el tiempo del
+sistema se representa con una trayectoria en el espacio de fases.
+
+El estudio del espacio de fases reviste un interés especial. Los sistemas disipativos presentan
+regiones del espacio de fases hacia la cual convergen las trayectorias que parten de una
+determinada región, llamada "cuenca del atractor". Hay atractores predecibles, de estructura
+simple, como el punto o el ciclo límite. Pero hay otros atractores, conocidos como atractores
+extraños, en los cuales pequeñas diferencias en las posiciones iniciales conducen a posiciones
+que divergen totalmente. Este es precisamente el caso del atractor de Lorenz, con su curiosa
+forma similar a una mariposa.
+
+Es probable que las evoluciones temporales de las variables, en general complejas, no
+permitan sacar conclusiones rápidas ni efectuar predicciones válidas, pero el análisis del
+espacio de fases si nos permite ver hacia donde converge el estado del sistema, y entre que
+valores máximos y mínimos de sus variables evoluciona. Todo esto constituye una información
+de gran valor cuando se aborda el estudio de las complejas situaciones que caracterizan al
+mundo en que vivimos.
+
+Edward Lorenz descubrió este inesperado comportamiento en 1963, cuando efectuaba las
+primeras simulaciones con el modelo que estaba estudiando. Sin proponérselo, había
+desarrollado un valioso ejemplo práctico de comportamiento caótico, que venía a afirmar lo
+que ya se había planteado en forma teórica muchos años antes. En 1890 Henri Pointcaré
+publicó un artículo describiendo el hecho de que el sistema sol-tierra-luna no puede ser
+explicado bajo la mecánica tradicional. En sus palabras: "sucede que pequeñas diferencias en
+las condiciones iniciales impactan grandemente en el fenómeno final. Un pequeño cambio al
+principio provoca enormes errores al final. La predicción se vuelve imposible". Posteriores
+estudios acerca del tema han permitido desarrollar numerosos ejemplos de sistemas físicos,
+químicos, biológicos y matemáticos que presentan este fenómeno de impredecibilidad, el cual
+ha sido llamado "caos determinista".
+
+Hallamos un buen ejemplo en el libro de Julien Sprott titulado "Chaos and Time-Series análisis"
+en el cual propone entre otros un sencillo modelo con tres variables. La visión sistémica y las
+poderosas herramientas de cálculo existentes permiten analizar muy rápidamente los
+problemas de comportamiento caótico, con la ventaja de disponer de una clara imagen visual
+de la estructura del sistema y sus interrelaciones. Asimismo, es inmediata la construcción de
+los espacios de fases y la búsqueda de atractores, lo cual no debe ser visto como un mero
+ejercicio matemático.
+Ejercicio 5.23. DINÁMICA DE UN DEPÓSITO
+
+Vamos a simular el comportamiento de un sistema muy simple, el que regula el contenido de
+un depósito intermedio de un líquido, el cual posee una sola entrada y una sola salida, que
+están siempre abiertas. Se trata de un depósito de 100 litros, que tiene en su momento inicial
+50 litros de líquido.
+
+Queremos saber la dinámica del contenido del depósito ante cambios en la entrada y la salida
+de caudal. En concreto queremos estar seguros de que no se va a desbordar, y de que no se va
+a quedar completamente vacío.
+
+La entrada al mismo la regulamos de forma tal que - para evitar que se desborde - entrará más
+caudal cuando el depósito se halle más vacío, y entrará menos caudal cuando el depósito esté
+casi lleno. Inicialmente equilibramos la entrada el depósito de forma tal que entra una fracción
+de 1/10 del volumen vacío del depósito.
+
+Por el contrario, hemos regulado la salida de forma tal que - para evitar que se quede vacío -
+saldrá más líquido cuando el depósito esté lleno y saldrá menos cuando el depósito se halle
+vacío. Inicialmente regulamos la salida para que ésta sea una fracción de 1/10 del contenido
+del depósito.
+
+DIAGRAMA CAUSAL
+
+En este sistema existen tres elementos a considerar, el contenido del depósito, la entrada de
+líquido y la salida de líquido. Dibuje un diagrama causal que recoja estas relaciones:
+
+1) "a más entrada habrá más contenido (relación positiva)"
+
+2) "a mayor salida habrá menos contenido (relación negativa)" <BR
+
+3) "a más contenido será menor la entrada de líquido (relación negativa)"
+
+4) "a más contenido será mayor la salida de líquido (relación positiva)"
+
+Por lo tanto ha de dibujar un sistema con dos bucles negativos (que tienen un número impar
+de relaciones con signo negativo en cada bucle) que estabilizarán el sistema. Consulte la
+solución en la página siguiente.
+DIAGRAMA DE FLUJOS
+El software del ordenador no puede ejecutar un modelo basado en el Diagrama Causal,
+necesita que se lo traduzcamos a un formato de Diagrama de Flujos o de Forrester.
+El primer paso para dibujar el Diagrama de Flujos es localizar las variables que representan
+acumulaciones, que definiremos como Niveles, para hacerlo es fácil hacer una foto mental del
+sistema, y lo que aparece en la foto son estas variables. Sus unidades son kg., m2, litros,
+personas, coches y las representamos dentro de un rectángulo.
+El segundo paso es localizar las variables que representan la variación de los Niveles, a estas
+variables las denominamos Flujos, sus unidades son las mismas que el Nivel que regulan y
+tienen además una componente temporal, son pues: kg/minuto, personas/hora, etc. Es posible
+que el Flujo se haya omitido en el Diagrama Causal y deba añadirse en el Diagrama de Flujos.
+El resto de elementos del sistema reciben el nombre de Variables Auxiliares, y no es necesario
+emplear una simbología específica. Pueden ser constantes o variables.
+
+Ejercicio 5.24. ESTUDIO DE LOS MOVIMIENTOS OSCILATORIOS
+El estudio de los movimientos oscilatorios siempre ha sido motivo de conflicto, sobre todo
+para los alumnos. ¿Cuál es ese conflicto? En los cursos de Mecánica, hasta el estudio de los
+osciladores, se ven sistemas cuyo mayor grado de complejidad se da en casos con valores de
+aceleración constante. A partir de allí, dicha variable cinemática también cambia su valor en
+función del tiempo, lo que ocasiona en los alumnos cierto desconcierto. Desconcierto que
+aumenta cuando resuelven las ecuaciones diferenciales para hallar las variables cinemáticas
+(posición, velocidad y aceleración) y / o las variables dinámicas (cantidad de movimiento y
+fuerza), y pierden la capacidad de análisis del comportamiento del sistema desde el punto de
+vista físico, sobre todo cuando analizan el comportamiento de las variables que influyen - o no
+- en los citados movimientos.
+Para tratar de solucionar esta situación, se propone una alternativa de estudio de los distintos
+Osciladores, utilizando la Dinámica de Sistemas como herramienta.
+El Movimiento Oscilatorio Forzado
+Se va a analizar el movimiento oscilatorio en una dimensión, que describe un sistema formado
+por un péndulo de resorte - un cuerpo de masa m, suspendido del extremo de un resorte ideal
+de constante elástica k -, cuando se lo perturba -se estira, o se comprime- respecto de su
+posición de equilibrio x0, una distancia x. El modelo puede utilizarse para analizar las variables
+cinemáticas (posición, velocidad y aceleración), o dinámicas (cantidad de movimiento y
+fuerza).
+
+Si bien se pueden analizar las variables en forma individual, se agrupan en dos gráficos: uno
+que involucra las cinemáticas, y otro para cantidad de movimiento y fuerza. Incluso tiene una
+ventaja adicional: se puede analizar si existe movimiento oscilatorio amortiguado. ¿Cómo se
+hace? Simplemente, cambiando el valor de la constante de amortiguamiento b, y realizando la
+simulación. El siguiente gráfico nos lo muestra.
+
+Si al modelo del oscilador amortiguado se le da el valor de b = 0, se tendrá un movimiento
+oscilatorio armónico. Esto muestra claramente de la gran utilidad educativa que tiene la
+Dinámica de Sistemas. Cambiando los valores de las variables que influyen en el movimiento,
+se puede analizar cómo se comporta el mismo. Por ejemplo, para el oscilador armónico simple,
+se puede vislumbrar el cambio en la amplitud, la longitud de onda, y la frecuencia (o el
+período, que es su recíproco) cuando se cambian los valores de k ó m en el modelo.
+
+Conclusiones
+
+Podemos obtener del modelo creado las conclusiones siguientes:
+
+- Cuando aumenta la masa, aumenta el período del movimiento oscilatorio armónico;
+
+- Cuando aumenta la constante k, disminuye el período del citado movimiento .
+
+En consecuencia, existe una relación directa entre el período de oscilación y la masa del
+péndulo de resorte, e inversa entre dicho período y la constante elástica del resorte. En
+consecuencia, se podría escribir:
+
+T=m/k
+
+La expresión matemática del período en función de la masa y de la constante elástica del
+resorte, se puede hallar mediante el procesamiento de los datos numéricos de la simulación, o
+a través de las ecuaciones diferenciales que resultan de la aplicación de la segunda ley de
+Newton.
+
+Mediante este trabajo se ha intentado explicar el gran aprovechamiento educativo que se
+puede hacer usando la Dinámica de Sistemas para el análisis de los Movimientos Oscilatorios
+Forzado, Amortiguado y Armónico.
+
+Empleando el mismo modelo, y modificando los valores de las variables según el caso a
+estudiar, se obtienen gráficas que facilitan enormemente el análisis, la comprensión y la
+discusión del sistema analizado.
+
+Ejercicio 5.25. DISEÑO DE UN REACTOR QUIMICO
+
+Una característica distintiva de los procesos industriales es su estructura compleja,
+generalmente constituida por muchas etapas, cada una de las cuales consta de numerosos
+subcomponentes. Su descripción matemática genera ecuaciones que van desde las muy
+sencillas hasta las muy complicadas.
+Se suma a esto la falta de un exhaustivo conocimiento de las características de los
+subcomponentes, y el elevado grado de interrelación entre las variables, generador de no
+linealidades que dificultan la resolución exacta de las ecuaciones.
+
+De este modo, el diseño de plantas nuevas y la optimización de existentes, dos tareas
+inherentes a la actuación de los ingenieros de proceso y proyecto, requieren muchas veces de
+criterios intuitivos. Tampoco por razones de economía y seguridad es posible realizar excesivas
+simulaciones de laboratorio o a escala piloto, o experimentar con plantas existentes.
+
+De este modo, el análisis sistémico y la creación de modelos de simulación dinámica aparecen
+como una forma muy atractiva de abordar el problema.
+
+Características fisicoquímicas del proceso considerado
+
+El presente modelo simula el comportamiento de un reactor discontinuo, perfectamente
+mezclado, de volumen constante, con un sistema de regulación de la temperatura mediante
+un serpentín interior, donde se lleva a cabo una reacción en fase gaseosa de primer orden.
+
+En la figura se muestra un esquema simplificado del reactor, con el agitador que asegura
+mezclado perfecto y el serpentín de enfriamiento, por el que circula una corriente de
+refrigerante a Tm, con un caudal suficiente para no experimentar un significativo cambio de
+temperatura.
+
+La reacción de conversión de A en los productos B y C es exotérmica, por lo que durante su
+desarrollo genera una cantidad de calor, que se puede calcular a partir de su calor de reacción,
+HR. De este modo, de no aplicarse un sistema de enfriamiento, la temperatura del reactor
+aumentará constantemente. Hay además otros factores que deben tenerse en cuenta.
+
+El modelo reproduce el comportamiento obtenido mediante la aplicación de modelos
+analógicos más complejos como los de Himmelblau y Bischoff que se describen en "Análisis y
+simulación de procesos" (Ed.Reverté.1976). Permite ver con claridad el comportamiento de
+este reactor ideal bajo diferentes condiciones de operación, puesto que es posible cambiar la
+temperatura del refrigerante, el área de transferencia de calor, la temperatura inicial de
+proceso y el coeficiente global de transferencia de calor.
+Ejercicio 5.26. LA FAROLA DE DARDER
+
+Los científicos se ocupan del estudio de fenómenos desconocidos y tratan de encontrar sus
+causas, con el propósito de erradicar las ancestrales supersticiones populares. La investigación
+aquí desarrollada se centra en el estudio de un fenómeno eléctrico sin una aparente
+explicación lógica.
+
+Se trata de una farola que tiene un misterioso comportamiento cuando llega la noche. Así,
+cuando oscurece la bombilla de la farola se enciende y apaga a intervalos de 2 segundos, hasta
+que finalmente al cabo de pocas horas - siempre antes de la llegada del amanecer- la bombilla
+se funde. Y así bombilla tras bombilla todas son destruidas.
+
+La farola no presenta ninguna anomalía en sus componentes mecánicos ni eléctricos, de forma
+que todas las pruebas realizadas por diversos técnicos no han permitido detectar ningún
+defecto de fabricación. También se ha comprobado que la instalación es general y que la
+tensión que recibe es estable.
+
+Se han probado diferentes marcas de bombillas, la instalación ha sido revisada en
+innumerables ocasiones, existen farolas similares en los alrededores que funcionan sin
+problemas, y no se ha encontrado ninguna causa razonable a este extraño fenómeno.
+
+LOS EQUIPOS INVESTIGADORES
+
+PRIMER EQUIPO DE INVESTIGACION
+
+Para estudiar el fenómeno se formó un primer equipo de investigación formado por un
+ingeniero eléctrico especializado en conducciones subterráneas, un perito mecánico con
+amplia experiencia en montajes industriales y un reputado aparejador local.
+
+Este primer equipo redactó un detallado documento descriptivo del emplazamiento de la
+farola, y de sus componentes físicos y eléctricos. No pudo encontrar la causa del extraño
+comportamiento en el plazo de tiempo de que dispusieron.
+
+Finalmente el valioso documento se perdió por un extraño problema eléctrico en el ordenador
+donde lo tenían almacenado.
+
+SEGUNDO EQUIPO DE INVESTIGACION
+
+Se formó a continuación un segundo equipo con un perfil muy diferente. Se contó con la
+colaboración de una vidente especialista en fenómenos paranormales, un jardinero jubilado y
+su ayudante, un administrador de fincas urbanas, una dotación de la policía municipal
+conocedora de la zona, y también se contó con la colaboración desinteresada de los vecinos y
+antiguos porteros de la finca donde se halla situada la farola.
+
+Las reuniones de este segundo grupo fueron desde el primer momento muy conflictivas
+debido a la vehemente postura de alguno de los vecinos, y el deseo de dirigir la investigación
+por parte de la dotación de la policía municipal.
+
+Para intentar llegar a algún acuerdo se añadió a este segundo equipo la asesoría de un
+gabinete de psicólogos especializado en trastornos de la conducta, un famoso psiquiatra
+argentino, un periodista americano, un biólogo y un técnico paisajista.
+
+Este segundo equipo no llegó a redactar ningún documento por las persistentes diferencias de
+criterio entre algunos de sus miembros que hizo imposible acordar un escrito final.
+TERCER EQUIPO DE INVESTIGACION
+
+Finalmente, se encargó de la investigación un estudiante de creación de modelos de
+simulación con Dinámica de Sistemas, el cual deseaba poder utilizarlo como trabajo de campo
+en el estudio de los fenómenos contraintuitivos.
+
+Sus resultados, que son los que se muestran a continuación, permitieron comprender las
+causas del fenómeno y como conclusión se hizo una propuesta fácil de llevar a la práctica para
+solucionar el problema.
+
+INFORME FINAL DEL TERCER EQUIPO DE INVESTIGACION
+
+SITUACION
+
+La farola objeto de estudio se halla situada en la fachada de una finca en la calle Doctor
+Francesc Darder 18 de Barcelona. La calle lleva el nombre de un explorador y biólogo que trajo
+desde Namibia el cuerpo disecado de un enigmático hechicero de raza negra, el cual estuvo
+expuesto al público durante más de cincuenta años en la población de Banyoles.
+
+La finca donde se halla la farola está halla rodeada de una zona ajardinada, y dispone de dos
+farolas idénticas en la fachada principal. Pueden verse imágenes de la finca en
+http://www.qdq.com La farola que presenta el enigmático comportamiento es la que se halla
+situada junto a la escalera central de acceso.
+
+Justo enfrente a la farola estudiada existe una capilla católica. A menos de cien metros de la
+farola se halla el Consulado de EE.UU. con todos sus complejos equipos de comunicación.
+
+DESCRIPCION DE LA FAROLA
+
+La farola es metálica con un pié de color blanco, y en su parte superior tiene un cilindro
+metálico con aberturas laterales del mismo color, en cuyo interior se coloca la bombilla. La
+farola aloja en su interior una bombilla de 250 watios y está conectada a 220 voltios de
+corriente. Se utilizan bombillas de calidad, de la marca Philips de bajo consumo y larga
+duración para las farolas situadas en la misma finca. En la investigación se han probado varios
+tipos de bombillas, de diferentes marcas y modelos (todas pagadas por el estudiante).
+
+El encendido de la farola es automático y para ello dispone de un accesorio blanco adosado a
+la pared más cercana que al oscurecer enciende automáticamente la farola, y al amanecer la
+apaga.
+
+El investigador realizó el esquema de la página siguiente. En la parte superior del documento
+podemos observar la secuencia de encendidos y apagados que se observa.
+
+La hora en la que se produce el primer encendido (que depende de la fecha de observación ya
+que el encendido es automático por sensor), y el intervalo que existe entre diferentes
+encendidos. Tras una larga espera se registró la hora en la que la bombilla se funde.
+
+TEORIAS
+
+El estudiante que forma el tercer equipo de investigación comenzó su trabajo recogiendo las
+teorías que existían sobre el mismo. La opinión de algunos vecinos del inmueble sitúa la causa
+de este comportamiento en la existencia de fuertes vientos laterales que entran por las
+rendijas de la farola y hacen que la bombilla se golpee contra la farola y por eso se funde la
+bombilla. Esta teoría no explica porqué se funden las bombillas cuando no hace viento ni
+porqué sólo se funden las bombillas en una de las lámparas.
+Otra teoría que se recogió hacía referencia a los rezos que se hacen en la cercana capilla por la
+noche, que provocan la ira del hechicero negro que trajo el biólogo Sr. Darder.
+
+También se especulaba sobre la existencia de un campo magnético procedente de algún
+equipo secreto instalado en el Consulado de EE.UU, situado muy cerca, pero el hecho de que
+todos los otros equipos eléctricos del edificio funcionasen con normalidad no avalaban esta
+teoría.
+
+ANALISIS DEL PROBLEMA CON UN MODELO DINÁMICO DE SIMULACION
+
+El estudiante del tercer equipo de investigación decidió prescindir de las teorías existentes por
+su falta de rigor y porque no explican en modo alguno el fenómeno, y decidió hacer un modelo
+dinámico de simulación.
+
+Estructuró el modelo según un diagrama causal, y después construyó el Diagrama de Forrester
+antes de introducirlo en el ordenador. La gráfica siguiente muestra el modelo final donde se
+incluyen los elementos básicos del sistema estudiado.
+
+En resumen, el modelo recoge que el sensor enciende la bombilla cuando la luz natural es
+menor que un valor deseado, y la apaga cuando es mayor que ese valor.
+
+Al construir el modelo se observó que cuando se enciende la bombilla, porque la luz natural es
+escasa, la luz de la bombilla ilumina al sensor de luz, y esto provoca que el sensor detecte que
+existe abundante luz, y apague la bombilla. Al apagarse la bombilla, como que la luz natural es
+escasa, el sensor detecta que falta luz y enciende la bombilla, y así sucesivamente... hasta que
+se funde la bombilla.
+
+La farola similar situada a escasos metros de la estudiada no presenta este comportamiento
+porque está regulada por un temporizador, no por un sensor, que enciente y apaga la bombilla
+siempre a la misma hora, y por lo tanto no existe ningún proceso de realimentación.
+
+El comportamiento del modelo del sistema real muestra las oscilaciones que se producen a
+partir del momento en el que la luz natural en el sensor desciende hasta un determinado valor.
+
+Se realizaron análisis de sensibilidad a variaciones del valor inicial de la cantidad de luz natural,
+ya que los fenómenos meteorológicos provocan una mayor o menor cantidad de luz natural en
+los días claros y menor en los días nublados.
+
+Se simuló la sensibilidad a la velocidad en la que disminuye la luz natural. Esta velocidad es
+función de la época del año, ya que en verano es mayor que en invierno porque el Sol se eleva
+más sobre el horizonte.
+
+Y en resumen podemos observar como el modelo reproduce la secuencia de encendidos y
+apagados del interruptor de la bombilla, que es la causa de que finalmente la bombilla se
+rompa tras unas horas.
+Ejercicio 5.27. EL NÚMERO DE ORO
+
+Fibonacci (o Leonardo Pisano) fue un matemático que vivió parte de su vida en Pisa (Italia)
+entre 1170 y 1250. Se decía de él que era un hombre dedicado a resolver cuestiones que no
+tenían valor práctico. En una oportunidad, se le planteó el siguiente problema:
+
+"En un patio cerrado, se coloca una pareja de conejos para ver cuántos descendientes produce
+en el curso de un año, y se supone que cada mes a partir del segundo mes de su vida, cada
+pareja de conejos da origen a una nueva. Calcular la cantidad de parejas de conejos al cabo de
+un año"
+
+La solución fue una sucesión de números que se hizo célebre y se conoce como Sucesión de
+Fibonacci. En ella, cada término resulta de la suma de los dos anteriores. De este modo será:
+1,1,2,3,5,8..... Estos números dan la cantidad de parejas de conejos a medida que pasan los
+meses.
+
+La curiosidad de saber si era posible reproducir esa situación mediante un modelo dio lugar al
+presente capítulo, que probablemente no tenga ningún valor práctico. El modelo es
+extremadamente sencillo y consta de dos flujos, Flujo 1 y Flujo 2, dos niveles, Caja 1 y Caja 2 y
+dos variables auxiliares, N1 y N2, que permiten cambiar los valores iniciales de Caja 1 y Caja 2.
+Veamos como se genera la sucesión de Fibonacci.
+
+Un análisis de cómo trabaja el software permite entenderlo. Simplificando la nomenclatura, y
+haciendo Flujo 1 = F1, Flujo 2 = F2, Caja 1 = C1 y Caja 2 = C2. Del diagrama del modelo
+podemos ver que F1 = C2 y que F2 = C1. Además, que en cualquier instante t el valor del flujo y
+del nivel que define ese valor son el mismo, así por ejemplo F1(1)=C2(1) = 2 y F2(1)=C1(1)=1.
+Pero también debemos recordar que el valor de un nivel determinado en un instante de
+tiempo determinado resulta de sumar el valor que tenía en el periodote tiempo anterior, más
+las entradas menos las salidas en el período de tiempo anterior.
+
+Pero avancemos más: si se efectúa el cociente entre cada término y el anterior se obtiene la
+Proporción Aurea, que converge al Número de Oro, es decir, 1.618034.
+
+Ahora bien: ¿habrá una relación entre esta sucesión que explicaba la dinámica de crecimiento
+poblacional de un caso teórico sobre conejos?
+Bibliografía de Dinámica de Sistemas
+Bibliografía Basica:
+Martín García, Juan (2004). Sysware ISBN 84-609-2462-9
+Senge, P. (2000) La danza del cambio. Ed. Gestión 2000. Madrid.
+Sterman, J. D. (2000). Business Dynamics: Systems Thinking and Modeling for a Complex
+World. NY: McGraw-Hill Higher Education.
+Bibliografía Complementaria:
+Aracil, J. (1992) Introducción a la Dinámica de Sistemas. Ed. Alianza editorial AU.Textos. Madrid
+Aracil, J. Gordillo F. (1997) Dinámica de Sistemas. Alianza Universidad Textos. Madrid.
+Augros, R. M. - Stanciu, G. N. (1984). The New Story of Science. NY: Bantam Books.
+Ballou R.H. (1991) Logística empresarial: control y planificación. Ed. Diaz de Santos.
+Bertalanffy L.W. (1968) Teoría general de los sistemas. Ed. Fondo de cultura México
+Bertalanffy L.W. (1981) Tendencias de la Teoria General de Sistemas. Alianza Editorial. Madrid.
+Bertalanffy L.W. (1982) Perspectivas en la Teoria General de Sistemas. Alianza Editorial.
+Madrid.
+Büch Jea-Yves (2001) Gestión del Conocimiento. Ed. AENOR. Madrid.
+Checkland, P. (1999). Systems Thinking, Systems Practice: A 30-Year Retrospective. NY: John
+Wiley and Sons
+Cuatrecasas Arbós, Ll. (2000) Organización de la producción y dirección de operaciones. Ed.
+Cera. Madrid.
+Delgado Gutierrez, J.A. (2002) Análisis Sistémico: Su aplicación a las comunidades humanas.
+Cie Dossat 2000 Madrid.
+Drucker, P. (1995). Managing in a Time of Great Change. NY: Dutton.
+
+Forrester, J. W. (1969). Urban Dynamics. Norwalk, CT: Productivity Press.
+
+Forrester, J. W. (1971). Principles of Systems. Norwalk, CT: Productivity Press.
+
+Forrester, J. W. (1971). World Dynamics. Norwalk, CT: Productivity Press.
+
+Forrester, J. W. (1975). Collected Papers of Jay W. Forrester. Norwalk, CT: Productivity Press.
+
+Galbraith, J. R. (1993). Organizing for the Future: The New Logic for Managing Complex
+Organizations. San Francisco, CA: Jossey-Bass Publishers.
+
+Gell-Mann, M. (1995). The Quark and the Jaguar. NY: W. H. Freeman.
+
+Goodman, M. R. (1974). Study Notes in System Dynamics. The MIT Press.
+
+Haines, S. G. (1998). The Managers Pocket Guide to Systems Thinking and Learning. Amherst,
+MA: HRD Press
+
+Haines, S. G. (2000). The Complete Guide to Systems Thinking and Learning. Amherst, MA: HRD
+Press.
+
+Kim, D. (1994). Systems Thinking Tools: A User's Reference Guide. Cambridge, MA: Pegasus
+Communications.
+
+Llavador Colomer, F. (2000) Modelos matemáticos de sistemas acuáticos dinámicos.
+Publicaciones Universidad de Alicante.
+
+López-Díaz Delgado, E. Iniciación a la simulación dinámica. Ed. Ariel Economía Madrid.
+
+Lovelock, J. E. (1987). Gaia. NY: Oxford University Press.
+
+Martinez Vicente J. Et al. (1979) La simulación dinámica aplicada a la ordenación de recursos,
+un modelo a dos niveles. Agricultura y sociedad 1979. Madrid.
+
+Martinez Vicente J. (1986) Conceptos básicos de modelos. Alianza Editorial. Madrid.
+
+Martinez Vicente J. (1986) Prospectiva y planificación mediante modelos. Alianza Editorial.
+Madrid.
+
+Meadows H. (1992) Más allá de los límites del Crecimiento. Ed. Aguilar. Madrid
+
+Mesarovic, M. (1967). Views on General Systems Theory. NY: John Wiley and Sons, Inc.
+
+Mesarovic, M. (1974) La humanidad en la encrucijada. Fondo de Cultura Económica. Madrid.
+
+Miller, G. (1978). The Need for a General Theory of Living Systems. Mc Graw Hill. New York.
+
+Mulgan, G. (1997). Connexity: How to live in a Connected World. MA: Harvard Business School
+Press.
+
+Naisbitt, J. (1994). Global Paradox: The bigger the World Economy, the More Powerful Its
+Smallest Players. NY: William Morrow.
+
+Naisbitt, J. - Aburdene, P. (1990). Megatrends 2000: Ten New Directions For The 1990's. NY:
+William Morrow and Company, Inc.
+O`Connor J. McDermott I. (1998) Introducción al pensamiento sistémico. Ed. Urano. Barcelona
+Pardo L. Valdes T. (1987) Simulación. Aplicaciones prácticas en la empresa. Ed. Diaz de Santos.
+Madrid.
+Pazos Sierra J. (1987) Inteligencia Artificial Ed. Paraninfo. Madrid.
+Prigogine, I. - Stengers, I. (1984). Order Out of Chaos. NY: Bantam Books.
+Pulido, A. (1993) El empleo de los modelos en Economía. Modelos Econométricos. Ed.
+Pirámide. Madrid.
+Richardson, G. P. (1991). Feedback Thought in Social Science and Systems Theory. Philadelphia,
+PA: University of Pennsylvania Press.
+Roberts, E. B. (1981). Managerial Applications of System Dynamics. Norwalk, CT: Productivity
+Press.
+Roberts, N. (1983) Introduction to Computer Simulation. NY. Addison-Wesley Publishing
+Company.
+Senge, P. (1999) La quinta disciplina. Ed. Granica. Barcelona
+Senge, P. (1999) La quinta disciplina en la práctica. Ed Granica. Barcelona
+Sheel Mayenberger, C. (1998) Modelización de la Dinámica de los Ecosistemas. Editorial Trillas.
+México
+Toffler, A. (1970). El Shock del Futuro. Alianza Editorial. Madrid.
+Toffler, A. - Toffler, H. (1980). La tercera ola. Ed. Plaza y Janés. Barcelona.
+Toffler, A. - Toffler, H. (1995). Creating a New Civilization: The Politics of The Third Wave.
+Atlanta, GA: Turner Publishing, Inc.
+Von Bertalanffy, L. (1967). Robots. Men and Minds: Psychology in the Modem World. NY:
+George Braziller, Inc.
+Von Bertalanffy, L. (1998). General Systems Theory: Foundations, Development, Applications.
+NY: George Braziller, Inc.
+Weiner, N. (1965). Cybernetics or Control and Communication in the Animal. Cambridge, MA:
+MIT Press.
+
+Referencias
+TEORIA Y EJERCICIOS PRACTICOS DE DINAMICA DE SISTEMAS:
+
+http://paginespersonals.upcnet.es/~jmg2/sistema2.htm
+Dinámica de Sistemas: http://dinamica-de-sistemas.com/
+

@@ -2,7 +2,31 @@
 
 Aplicación web interactiva de un solo archivo (`index.html`) que simula dos ejercicios clásicos del libro **"Teoría y Ejercicios Prácticos de Dinámica de Sistemas"** de Juan Martín García, usando integración numérica por el **método de Euler**.
 
-No requiere instalación, servidor ni build: se abre directamente en el navegador.
+La simulación puede abrirse directamente en el navegador. Para consultar a OpenRouter sobre la interpretación de un modelo, se puede levantar el backend opcional escrito en Go.
+
+## Backend Go y análisis con OpenRouter
+
+El backend sirve los archivos estáticos y expone `POST /api/interpret`. La clave de OpenRouter permanece en el servidor y nunca se envía al navegador.
+
+Requisitos: Go 1.22 o superior y una clave de OpenRouter.
+
+En PowerShell:
+
+```powershell
+$env:OPENROUTER_API_KEY = "sk-or-v1-tu-clave"
+$env:OPENROUTER_MODEL = "openrouter/auto" # opcional
+go run .
+```
+
+Después abre `http://localhost:8080`, ejecuta alguno de los modelos y entra en **Historial y análisis**. El botón **Interpretar con IA** envía las ecuaciones, parámetros, métricas de tendencia y una muestra de la serie temporal al backend.
+
+Comprobación rápida:
+
+```powershell
+Invoke-RestMethod http://localhost:8080/api/health
+```
+
+Si se abre `index.html` directamente como archivo, la simulación seguirá funcionando, pero la llamada a `/api/interpret` no estará disponible porque no existe un servidor que atienda esa ruta.
 
 ## Demo en vivo
 

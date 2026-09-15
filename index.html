@@ -4,120 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dinámica de Sistemas · Simulador Interactivo</title>
+<link rel="stylesheet" href="styles.css">
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-<script>
-  function loadScript(src, onLoad, onError) {
-    var existing = document.querySelector('script[src="' + src + '"]');
-    if (existing) {
-      if (existing.dataset.loaded === 'true') {
-        onLoad && onLoad();
-      } else {
-        existing.addEventListener('load', onLoad, { once: true });
-      }
-      return;
-    }
 
-    var tag = document.createElement('script');
-    tag.src = src;
-    tag.async = false;
-    tag.defer = true;
-    tag.onload = function () {
-      tag.dataset.loaded = 'true';
-      onLoad && onLoad();
-    };
-    tag.onerror = function () {
-      onError && onError();
-    };
-    document.head.appendChild(tag);
-  }
-
-  function bootstrapCharts() {
-    if (typeof Chart !== 'undefined') {
-      initApp();
-      return;
-    }
-
-    loadScript(
-      'https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js',
-      function () {
-        if (typeof Chart !== 'undefined') {
-          initApp();
-        } else {
-          loadScript('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js', function () {
-            if (typeof Chart !== 'undefined') {
-              initApp();
-            } else {
-              document.body.innerHTML = '<div style="padding:40px;color:#e8636b;font-family:sans-serif">No se pudo cargar Chart.js desde la red. Verifica tu conexión a internet e intenta recargar la página.</div>';
-            }
-          }, function () {
-            document.body.innerHTML = '<div style="padding:40px;color:#e8636b;font-family:sans-serif">No se pudo cargar Chart.js desde la red. Verifica tu conexión a internet e intenta recargar la página.</div>';
-          });
-        }
-      },
-      function () {
-        loadScript('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js', function () {
-          if (typeof Chart !== 'undefined') {
-            initApp();
-          } else {
-            document.body.innerHTML = '<div style="padding:40px;color:#e8636b;font-family:sans-serif">No se pudo cargar Chart.js desde la red. Verifica tu conexión a internet e intenta recargar la página.</div>';
-          }
-        }, function () {
-          document.body.innerHTML = '<div style="padding:40px;color:#e8636b;font-family:sans-serif">No se pudo cargar Chart.js desde la red. Verifica tu conexión a internet e intenta recargar la página.</div>';
-        });
-      }
-    );
-  }
-
-  window.addEventListener('DOMContentLoaded', bootstrapCharts);
-</script>
-<style>
-  :root{
-    --bg: #0d1117;
-    --panel: #141b26;
-    --panel-2: #1b2432;
-    --line: #29384a;
-    --text: #dbe4ee;
-    --muted: #7c8ba1;
-    --rabbit: #45c4a0;
-    --fox: #e8905c;
-    --susc: #4fa3e3;
-    --inf: #e8636b;
-    --rec: #6fcf7a;
-    --accent: #f2c14e;
-  }
-  html,body{background:var(--bg); color:var(--text); font-family: 'Segoe UI', Inter, system-ui, sans-serif;}
-  .mono{font-family: 'Consolas','SFMono-Regular',Menlo,monospace;}
-  .card{background:var(--panel); border:1px solid var(--line); border-radius:10px;}
-  .card-2{background:var(--panel-2); border:1px solid var(--line); border-radius:8px;}
-  input[type=range]{-webkit-appearance:none; height:4px; border-radius:2px; background:var(--line); outline:none;}
-  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:14px; height:14px; border-radius:50%; background:var(--accent); cursor:pointer; border:2px solid #0d1117;}
-  input[type=number]{background:var(--panel-2); border:1px solid var(--line); color:var(--text); border-radius:6px; padding:2px 6px; width:80px;}
-  .tab-btn{transition:all .15s ease;}
-  .tab-btn.active{background:var(--accent); color:#20180a; font-weight:600;}
-  .tab-btn:not(.active){background:transparent; color:var(--muted);}
-  .ctrl-btn{transition:all .15s ease; border:1px solid var(--line);}
-  .ctrl-btn:hover{border-color:var(--accent);}
-  .badge{font-size:11px; letter-spacing:.02em; color:var(--muted);}
-  ::-webkit-scrollbar{width:8px; height:8px;}
-  ::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px;}
-  .loop-svg text{fill:var(--text); font-size:11px;}
-  .loop-svg path{stroke:var(--muted); fill:none;}
-</style>
 </head>
 <body class="min-h-screen">
 
 <div class="max-w-7xl mx-auto px-4 py-6">
 
-  <header class="mb-6">
-    <h1 class="text-xl md:text-2xl font-semibold tracking-tight">Simulador de Dinámica de Sistemas</h1>
-    <p class="badge mt-1">Basado en "Teoría y Ejercicios Prácticos de Dinámica de Sistemas" — Juan Martín García · Integración por Método de Euler</p>
+  <header class="mb-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+    <div>
+      <h1 class="text-xl md:text-2xl font-semibold tracking-tight">Simulador de Dinámica de Sistemas</h1>
+      <p class="badge mt-1">Basado en "Teoría y Ejercicios Prácticos de Dinámica de Sistemas" — Juan Martín García · Integración por Método de Euler</p>
+    </div>
+    <button id="themeToggle" class="ctrl-btn card-2 rounded-md px-3 py-2 text-xs font-medium" onclick="toggleTheme()">🌙 Modo oscuro</button>
   </header>
 
   <!-- TABS -->
-  <div class="flex gap-2 mb-6 border-b" style="border-color:var(--line)">
+  <div class="flex flex-wrap gap-2 mb-6 border-b" style="border-color:var(--line)">
     <button id="tabBtn1" class="tab-btn active px-4 py-2 rounded-t-lg text-sm" onclick="switchTab(1)">Ejercicio 1 · Presa-Depredador</button>
     <button id="tabBtn2" class="tab-btn px-4 py-2 rounded-t-lg text-sm" onclick="switchTab(2)">Ejercicio 2 · Modelo SIR</button>
+    <button id="tabBtn3" class="tab-btn px-4 py-2 rounded-t-lg text-sm" onclick="switchTab(3)">Ejercicio 5.1 · Población</button>
+    <button id="tabBtn4" class="tab-btn px-4 py-2 rounded-t-lg text-sm" onclick="switchTab(4)">Historial y análisis</button>
   </div>
 
   <!-- ===================== MODELO 1 ===================== -->
@@ -320,253 +228,161 @@
     </div>
   </div>
 
+  <!-- ===================== MODELO 3: POBLACIÓN ===================== -->
+  <div id="panel3" class="hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+
+      <!-- Controles -->
+      <div class="card p-4 lg:col-span-1">
+        <h2 class="text-sm font-semibold mb-3 text-slate-300">Condición inicial</h2>
+        <div class="space-y-3 mb-5">
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>Población inicial (P₀)</span><input type="number" id="m3_P0" value="1000" class="mono text-right" oninput="syncSlider('m3_P0','m3_P0_s')"></div>
+            <input type="range" id="m3_P0_s" min="0" max="5000" step="10" value="1000" class="w-full" oninput="syncNumber('m3_P0_s','m3_P0')">
+          </div>
+        </div>
+
+        <h2 class="text-sm font-semibold mb-3 text-slate-300">Parámetros</h2>
+        <div class="space-y-3 mb-4">
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>Tasa de natalidad</span><input type="number" step="0.001" id="m3_a" value="0.05" class="mono text-right" oninput="syncSlider('m3_a','m3_a_s')"></div>
+            <input type="range" id="m3_a_s" min="0" max="0.3" step="0.001" value="0.05" class="w-full" oninput="syncNumber('m3_a_s','m3_a')">
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>Esperanza de vida (semanas)</span><input type="number" step="1" id="m3_e" value="100" class="mono text-right" oninput="syncSlider('m3_e','m3_e_s')"></div>
+            <input type="range" id="m3_e_s" min="10" max="300" step="1" value="100" class="w-full" oninput="syncNumber('m3_e_s','m3_e')">
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1"><span>dt (paso Euler, semanas)</span><input type="number" step="0.1" id="m3_dt" value="1" class="mono text-right" oninput="syncSlider('m3_dt','m3_dt_s')"></div>
+            <input type="range" id="m3_dt_s" min="0.1" max="2" step="0.1" value="1" class="w-full" oninput="syncNumber('m3_dt_s','m3_dt')">
+          </div>
+        </div>
+
+        <div class="card-2 p-3 rounded-md mb-4 text-center">
+          <div class="badge">Tasa neta = natalidad − 1/esperanza</div>
+          <div class="text-lg font-bold mono" id="m3_netRate" style="color:var(--accent)">4.00 %/sem</div>
+          <div class="badge mt-1">Tiempo de duplicación ≈ <span id="m3_double" class="mono">17.7</span> sem</div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <button id="m3_play" class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="toggleRun(3)">▶ Iniciar</button>
+          <button class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="stepOnce(3)">⏭ Paso a paso (Euler)</button>
+          <button class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="resetModel(3)">↺ Reiniciar</button>
+        </div>
+      </div>
+
+      <!-- Gráficos -->
+      <div class="lg:col-span-2 flex flex-col gap-4">
+        <div class="card p-4">
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-sm font-semibold text-slate-300">Evolución temporal</h3>
+            <span class="badge mono">t = <span id="m3_t">0.00</span> sem</span>
+          </div>
+          <canvas id="m3_chartTime" height="220"></canvas>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="card-2 p-3 rounded-md text-center"><div class="badge">Población</div><div class="mono text-lg" style="color:var(--pop)" id="m3_Pval">1000</div></div>
+          <div class="card-2 p-3 rounded-md text-center"><div class="badge">Nacimientos</div><div class="mono text-lg" style="color:var(--birth)" id="m3_Bval">50</div></div>
+          <div class="card-2 p-3 rounded-md text-center"><div class="badge">Defunciones</div><div class="mono text-lg" style="color:var(--death)" id="m3_Dval">10</div></div>
+        </div>
+      </div>
+
+      <!-- Explicación / diagrama de bucles -->
+      <div class="card p-4 lg:col-span-1">
+        <h3 class="text-sm font-semibold text-slate-300 mb-3">Diagrama de bucles causales</h3>
+        <svg viewBox="0 0 220 190" class="loop-svg w-full mb-3">
+          <rect x="70" y="12" width="80" height="28" rx="6" fill="none" stroke="var(--pop)"/>
+          <text x="110" y="30" text-anchor="middle" font-size="10">Población</text>
+
+          <rect x="5" y="80" width="70" height="28" rx="6" fill="none" stroke="var(--birth)"/>
+          <text x="40" y="98" text-anchor="middle" font-size="9">Nacimientos</text>
+          <rect x="145" y="80" width="70" height="28" rx="6" fill="none" stroke="var(--death)"/>
+          <text x="180" y="98" text-anchor="middle" font-size="9">Defunciones</text>
+
+          <path d="M85,40 C60,55 45,60 40,80" marker-end="url(#arrow3)"/>
+          <path d="M40,80 C55,60 70,45 85,42" marker-end="url(#arrow3)"/>
+          <text x="45" y="65" font-size="12" font-weight="600" fill="var(--accent)">R</text>
+
+          <path d="M135,40 C160,55 175,60 180,80" marker-end="url(#arrow3)"/>
+          <path d="M180,80 C165,60 150,45 135,42" marker-end="url(#arrow3)"/>
+          <text x="165" y="65" font-size="12" font-weight="600" fill="var(--accent)">B</text>
+
+          <rect x="0" y="140" width="80" height="26" rx="6" fill="none" stroke="var(--param)"/>
+          <text x="40" y="157" text-anchor="middle" font-size="8">Tasa de natalidad</text>
+          <path d="M40,140 L40,110" marker-end="url(#arrow3)" stroke-dasharray="3,2"/>
+
+          <rect x="140" y="140" width="80" height="26" rx="6" fill="none" stroke="var(--param)"/>
+          <text x="180" y="157" text-anchor="middle" font-size="8">Esperanza de vida</text>
+          <path d="M180,140 L180,110" marker-end="url(#arrow3)" stroke-dasharray="3,2"/>
+
+          <defs><marker id="arrow3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--muted)"/></marker></defs>
+        </svg>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+          El bucle <b class="text-slate-200">R</b> (Población → Nacimientos → Población) es reforzador. El bucle <b class="text-slate-200">B</b> (Población → Defunciones → Población) es de equilibrio. Como la tasa de natalidad supera a la tasa de mortalidad (1/esperanza de vida), domina el bucle R y la población crece de forma exponencial.
+        </p>
+        <h3 class="text-sm font-semibold text-slate-300 mb-2">Estado de las ecuaciones</h3>
+        <div class="card-2 p-3 rounded-md mono text-xs leading-6" id="m3_eqBox">
+          Nacimientos = P·natalidad<br>
+          Defunciones = P/esperanza<br>
+          P(t+dt) = P + Nacimientos − Defunciones
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== ANÁLISIS ===================== -->
+  <div id="panel4" class="hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div class="card p-4 lg:col-span-1">
+        <h2 class="text-sm font-semibold mb-3 text-slate-300">Resumen del registro</h2>
+        <div class="space-y-3">
+          <div class="card-2 p-3 rounded-md">
+            <div class="badge">Total de registros</div>
+            <div class="text-2xl font-bold mono" id="analysisCount">0</div>
+          </div>
+          <div class="card-2 p-3 rounded-md">
+            <div class="badge">Último modelo</div>
+            <div class="text-sm font-semibold" id="analysisModel">Sin datos</div>
+          </div>
+          <div class="card-2 p-3 rounded-md">
+            <div class="badge">Tendencia</div>
+            <div class="mono text-sm" id="analysisTrend">—</div>
+          </div>
+          <div class="card-2 p-3 rounded-md">
+            <div class="badge">R²</div>
+            <div class="mono text-sm" id="analysisR2">—</div>
+          </div>
+          <div class="card-2 p-3 rounded-md">
+            <div class="badge">Última actualización</div>
+            <div class="text-xs" id="analysisLastDate">—</div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 mt-4">
+          <button class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="saveCurrentRun()">💾 Guardar ejecución actual</button>
+          <button id="interpretButton" class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="requestAIInterpretation()">✦ Interpretar con IA</button>
+          <button class="ctrl-btn card-2 rounded-md py-2 text-sm" onclick="clearHistory()">🗑 Borrar historial</button>
+        </div>
+      </div>
+
+      <div class="card p-4 lg:col-span-2">
+        <h2 class="text-sm font-semibold mb-3 text-slate-300">Historial</h2>
+        <div id="historyList" class="space-y-2"></div>
+      </div>
+
+      <div class="card p-4 lg:col-span-3">
+        <div class="flex justify-between items-center gap-3 mb-3">
+          <h2 class="text-sm font-semibold text-slate-300">Interpretación del modelo</h2>
+          <span id="aiStatus" class="badge">Aún no solicitada</span>
+        </div>
+        <div id="aiInterpretation" class="ai-result text-sm leading-relaxed">Ejecuta el modelo y pulsa “Interpretar con IA” para consultar el backend.</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<script>
-/* ============== UTILIDADES DE UI ============== */
-function syncSlider(numId, sliderId){ document.getElementById(sliderId).value = document.getElementById(numId).value; onParamChange(); }
-function syncNumber(sliderId, numId){ document.getElementById(numId).value = document.getElementById(sliderId).value; onParamChange(); }
-
-function switchTab(n){
-  document.getElementById('panel1').classList.toggle('hidden', n!==1);
-  document.getElementById('panel2').classList.toggle('hidden', n!==2);
-  document.getElementById('tabBtn1').classList.toggle('active', n===1);
-  document.getElementById('tabBtn2').classList.toggle('active', n===2);
-}
-
-function onParamChange(){
-  updateR0();
-}
-
-let m1, m1ChartTime, m1ChartPhase, m2, m2ChartTime;
-
-/* ============== MODELO 1: PRESA-DEPREDADOR ============== */
-function getM1Params(){
-  return {
-    a: parseFloat(document.getElementById('m1_a').value),
-    b: parseFloat(document.getElementById('m1_b').value),
-    c: parseFloat(document.getElementById('m1_c').value),
-    d: parseFloat(document.getElementById('m1_d').value),
-    dt: parseFloat(document.getElementById('m1_dt').value)
-  };
-}
-
-function resetModel1(){
-  m1.C = parseFloat(document.getElementById('m1_C0').value);
-  m1.Z = parseFloat(document.getElementById('m1_Z0').value);
-  m1.t = 0;
-  m1.history = {t:[m1.t], C:[m1.C], Z:[m1.Z]};
-  m1.phase = [{x:m1.C, y:m1.Z}];
-  redrawM1();
-  updateM1Labels();
-}
-
-function eulerStepM1(){
-  const p = getM1Params();
-  const dC = (p.a*m1.C - p.b*m1.C*m1.Z) * p.dt;
-  const dZ = (p.c*m1.C*m1.Z - p.d*m1.Z) * p.dt;
-  m1.C = Math.max(0, m1.C + dC);
-  m1.Z = Math.max(0, m1.Z + dZ);
-  m1.t += p.dt;
-  m1.history.t.push(m1.t);
-  m1.history.C.push(m1.C);
-  m1.history.Z.push(m1.Z);
-  m1.phase.push({x:m1.C, y:m1.Z});
-  if(m1.history.t.length > 4000){
-    m1.history.t.shift(); m1.history.C.shift(); m1.history.Z.shift(); m1.phase.shift();
-  }
-  updateM1Labels();
-}
-
-function updateM1Labels(){
-  const p = getM1Params();
-  document.getElementById('m1_t').textContent = m1.t.toFixed(2);
-  document.getElementById('m1_eqBox').innerHTML =
-    `dC/dt = ${p.a}·${m1.C.toFixed(1)} − ${p.b}·${m1.C.toFixed(1)}·${m1.Z.toFixed(1)} = <b style="color:var(--rabbit)">${(p.a*m1.C - p.b*m1.C*m1.Z).toFixed(2)}</b><br>` +
-    `dZ/dt = ${p.c}·${m1.C.toFixed(1)}·${m1.Z.toFixed(1)} − ${p.d}·${m1.Z.toFixed(1)} = <b style="color:var(--fox)">${(p.c*m1.C*m1.Z - p.d*m1.Z).toFixed(2)}</b>`;
-}
-
-function redrawM1(){
-  m1ChartTime.data.labels = m1.history.t.map(v=>v.toFixed(1));
-  m1ChartTime.data.datasets[0].data = m1.history.C;
-  m1ChartTime.data.datasets[1].data = m1.history.Z;
-  m1ChartTime.update('none');
-
-  m1ChartPhase.data.datasets[0].data = m1.phase;
-  m1ChartPhase.update('none');
-}
-
-/* ============== MODELO 2: SIR / SIRS ============== */
-function getM2Params(){
-  return {
-    N: parseFloat(document.getElementById('m2_N').value),
-    beta: parseFloat(document.getElementById('m2_beta').value),
-    gamma: parseFloat(document.getElementById('m2_gamma').value),
-    dt: parseFloat(document.getElementById('m2_dt').value),
-    sirs: document.getElementById('m2_sirs').checked,
-    delta: parseFloat(document.getElementById('m2_delta').value)
-  };
-}
-
-function toggleSirs(){
-  const on = document.getElementById('m2_sirs').checked;
-  document.getElementById('m2_deltaWrap').classList.toggle('hidden', !on);
-  document.getElementById('m2_modeLabel').textContent = on ? 'Temporal (SIRS)' : 'Permanente (SIR)';
-  document.getElementById('m2_loopBack').style.opacity = on ? 1 : 0;
-  document.getElementById('m2_loopBackText').style.opacity = on ? 1 : 0;
-  document.getElementById('m2_eqBox').innerHTML = on ?
-    `dS/dt = −β·S·I/N + δ·R<br>dI/dt = β·S·I/N − γ·I<br>dR/dt = γ·I − δ·R` :
-    `dS/dt = −β·S·I/N<br>dI/dt = β·S·I/N − γ·I<br>dR/dt = γ·I`;
-}
-
-function resetModel2(){
-  const N = parseFloat(document.getElementById('m2_N').value);
-  const I0 = parseFloat(document.getElementById('m2_I0').value);
-  m2.I = I0;
-  m2.S = N - I0;
-  m2.R = 0;
-  m2.t = 0;
-  m2.history = {t:[0], S:[m2.S], I:[m2.I], R:[m2.R]};
-  redrawM2();
-  updateM2Labels();
-  updateR0();
-}
-
-function eulerStepM2(){
-  const p = getM2Params();
-  const infection = p.beta * m2.S * m2.I / p.N;
-  const recovery = p.gamma * m2.I;
-  const waning = p.sirs ? p.delta * m2.R : 0;
-
-  const dS = (-infection + waning) * p.dt;
-  const dI = (infection - recovery) * p.dt;
-  const dR = (recovery - waning) * p.dt;
-
-  m2.S = Math.max(0, m2.S + dS);
-  m2.I = Math.max(0, m2.I + dI);
-  m2.R = Math.max(0, m2.R + dR);
-  m2.t += p.dt;
-
-  m2.history.t.push(m2.t);
-  m2.history.S.push(m2.S);
-  m2.history.I.push(m2.I);
-  m2.history.R.push(m2.R);
-  if(m2.history.t.length > 4000){
-    m2.history.t.shift(); m2.history.S.shift(); m2.history.I.shift(); m2.history.R.shift();
-  }
-  updateM2Labels();
-}
-
-function updateM2Labels(){
-  document.getElementById('m2_t').textContent = m2.t.toFixed(2);
-  document.getElementById('m2_Sval').textContent = m2.S.toFixed(0);
-  document.getElementById('m2_Ival').textContent = m2.I.toFixed(0);
-  document.getElementById('m2_Rval').textContent = m2.R.toFixed(0);
-}
-
-function updateR0(){
-  const beta = parseFloat(document.getElementById('m2_beta').value);
-  const gamma = parseFloat(document.getElementById('m2_gamma').value);
-  const r0 = gamma > 0 ? (beta/gamma) : 0;
-  document.getElementById('m2_r0').textContent = r0.toFixed(2);
-}
-
-function redrawM2(){
-  m2ChartTime.data.labels = m2.history.t.map(v=>v.toFixed(1));
-  m2ChartTime.data.datasets[0].data = m2.history.S;
-  m2ChartTime.data.datasets[1].data = m2.history.I;
-  m2ChartTime.data.datasets[2].data = m2.history.R;
-  m2ChartTime.update('none');
-}
-
-/* ============== CONTROL GENÉRICO ============== */
-function toggleRun(n){
-  const state = n===1 ? m1 : m2;
-  const btn = document.getElementById(n===1 ? 'm1_play' : 'm2_play');
-  state.running = !state.running;
-  if(state.running){
-    btn.textContent = '⏸ Pausar';
-    state.timer = setInterval(()=>{
-      if(n===1){ eulerStepM1(); redrawM1(); } else { eulerStepM2(); redrawM2(); }
-    }, 40);
-  } else {
-    btn.textContent = '▶ Iniciar';
-    clearInterval(state.timer);
-  }
-}
-
-function stepOnce(n){
-  const state = n===1 ? m1 : m2;
-  if(state.running) toggleRun(n);
-  if(n===1){ eulerStepM1(); redrawM1(); } else { eulerStepM2(); redrawM2(); }
-}
-
-function resetModel(n){
-  const state = n===1 ? m1 : m2;
-  if(state.running) toggleRun(n);
-  if(n===1) resetModel1(); else resetModel2();
-}
-
-/* ============== CHART.JS HELPERS ============== */
-function getCss(varName){
-  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
-}
-
-function baseLineOptions(xTitle, yTitle, isPhase){
-  return {
-    animation:false,
-    responsive:true,
-    maintainAspectRatio:false,
-    interaction:{ mode:'nearest', intersect:false },
-    plugins:{
-      legend:{ labels:{ color: getCss('--text'), boxWidth:12, font:{size:11} } },
-      tooltip:{ enabled:true }
-    },
-    scales:{
-      x:{ title:{ display:true, text:xTitle, color:getCss('--muted') }, ticks:{ color:getCss('--muted'), maxTicksLimit:8 }, grid:{ color:getCss('--line') }, type: isPhase ? 'linear' : 'category' },
-      y:{ title:{ display:true, text:yTitle, color:getCss('--muted') }, ticks:{ color:getCss('--muted') }, grid:{ color:getCss('--line') }, beginAtZero:true }
-    }
-  };
-}
-
-/* ============== INICIALIZACIÓN (se ejecuta cuando Chart.js ya cargó) ============== */
-function initApp(){
-  m1 = { C:100, Z:15, t:0, running:false, timer:null, history:{t:[],C:[],Z:[]}, phase:[] };
-  m2 = { S:995, I:5, R:0, t:0, running:false, timer:null, history:{t:[],S:[],I:[],R:[]} };
-
-  m1ChartTime = new Chart(document.getElementById('m1_chartTime'), {
-    type:'line',
-    data:{ labels:[], datasets:[
-      {label:'Conejos', data:[], borderColor:getCss('--rabbit'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
-      {label:'Zorros', data:[], borderColor:getCss('--fox'), backgroundColor:'transparent', pointRadius:0, tension:0.1}
-    ]},
-    options: baseLineOptions('t', 'Población')
-  });
-
-  m1ChartPhase = new Chart(document.getElementById('m1_chartPhase'), {
-    type:'line',
-    data:{ datasets:[{ label:'Trayectoria (Z vs C)', data:[], borderColor:getCss('--accent'), backgroundColor:'transparent', pointRadius:0, showLine:true, tension:0 }]},
-    options: baseLineOptions('Conejos (C)', 'Zorros (Z)', true)
-  });
-
-  m2ChartTime = new Chart(document.getElementById('m2_chartTime'), {
-    type:'line',
-    data:{ labels:[], datasets:[
-      {label:'Susceptibles', data:[], borderColor:getCss('--susc'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
-      {label:'Infectados', data:[], borderColor:getCss('--inf'), backgroundColor:'transparent', pointRadius:0, tension:0.1},
-      {label:'Recuperados', data:[], borderColor:getCss('--rec'), backgroundColor:'transparent', pointRadius:0, tension:0.1}
-    ]},
-    options: baseLineOptions('t', 'Personas')
-  });
-
-  document.getElementById('m1_chartTime').parentElement.style.height='220px';
-  document.getElementById('m1_chartPhase').parentElement.style.height='260px';
-  document.getElementById('m2_chartTime').parentElement.style.height='320px';
-
-  resetModel1();
-  resetModel2();
-  updateR0();
-}
-</script>
+<script src="store.js"></script>
+<script src="analytics.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
